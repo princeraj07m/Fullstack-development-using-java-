@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reports - Placement Management System</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.css">
+</head>
+<body>
+    <div class="container-wrapper">
+        <!-- Left Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <i class="fas fa-graduation-cap"></i>
+                    <span>PMS</span>
+                </div>
+                <p class="subtitle">Placement Manager</p>
+            </div>
+
+            <nav class="sidebar-nav">
+                <ul>
+                    <li><a href="index.html" class="nav-link" data-section="dashboard"><i class="fas fa-home"></i> <span>Dashboard</span></a></li>
+                    <li><a href="students.html" class="nav-link" data-section="students"><i class="fas fa-users"></i> <span>Students</span></a></li>
+                    <li><a href="companies.html" class="nav-link" data-section="companies"><i class="fas fa-building"></i> <span>Companies</span></a></li>
+                    <li><a href="jobs.html" class="nav-link" data-section="jobs"><i class="fas fa-briefcase"></i> <span>Job Postings</span></a></li>
+                    <li><a href="interviews.html" class="nav-link" data-section="interviews"><i class="fas fa-video"></i> <span>Interviews</span></a></li>
+                    <li><a href="drives.html" class="nav-link" data-section="drives"><i class="fas fa-calendar-alt"></i> <span>Upcoming Drives</span></a></li>
+                    <li><a href="placements.html" class="nav-link" data-section="placements"><i class="fas fa-check-circle"></i> <span>Placements</span></a></li>
+                    <li><a href="reports.html" class="nav-link active" data-section="reports"><i class="fas fa-chart-bar"></i> <span>Reports</span></a></li>
+                </ul>
+            </nav>
+
+            <div class="sidebar-footer">
+                <a href="#profile" class="profile-link">
+                    <img src="https://via.placeholder.com/40" alt="Profile">
+                    <span>Profile</span>
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="top-header">
+                <div class="header-left">
+                    <button class="menu-toggle" id="menuToggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <h1>Reports & Analytics</h1>
+                </div>
+                <div class="header-right">
+                    <div class="search-bar">
+                        <input type="text" placeholder="Search reports...">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <div class="header-icons">
+                        <button class="icon-btn" title="Notifications">
+                            <i class="fas fa-bell"></i>
+                            <span class="badge">3</span>
+                        </button>
+                        <button class="icon-btn" title="Settings">
+                            <i class="fas fa-cog"></i>
+                        </button>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Content Section -->
+            <section class="content-section">
+                <!-- Filter and Action Bar -->
+                <div class="filter-bar">
+                    <div class="filter-group">
+                        <select>
+                            <option>Select Year</option>
+                            <option>2025</option>
+                            <option>2024</option>
+                            <option>2023</option>
+                        </select>
+                    </div>
+                    <button class="btn btn-primary" id="downloadReportBtn">
+                        <i class="fas fa-download"></i> Download Report
+                    </button>
+                </div>
+
+                <!-- Report Cards Grid -->
+                <div class="content-grid">
+                    <!-- Placement Summary Chart -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h2><i class="fas fa-pie-chart"></i> Placement Summary</h2>
+                        </div>
+                        <div class="card-body chart-container">
+                            <canvas id="placementChart"></canvas>
+                        </div>
+                    </div>
+
+                    <!-- Salary Distribution Chart -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h2><i class="fas fa-chart-bar"></i> Salary Distribution</h2>
+                        </div>
+                        <div class="card-body chart-container">
+                            <canvas id="salaryChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Detailed Reports -->
+                <div class="content-grid">
+                    <!-- Branch-wise Placements -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h2><i class="fas fa-building"></i> Branch-wise Placements</h2>
+                        </div>
+                        <div class="card-body">
+                            <div class="report-row">
+                                <div class="report-label">CSE</div>
+                                <div class="report-bar">
+                                    <div class="bar-fill" style="width: 85%"></div>
+                                </div>
+                                <div class="report-value">85/100 (85%)</div>
+                            </div>
+                            <div class="report-row">
+                                <div class="report-label">ECE</div>
+                                <div class="report-bar">
+                                    <div class="bar-fill" style="width: 72%"></div>
+                                </div>
+                                <div class="report-value">72/95 (75.8%)</div>
+                            </div>
+                            <div class="report-row">
+                                <div class="report-label">ME</div>
+                                <div class="report-bar">
+                                    <div class="bar-fill" style="width: 60%"></div>
+                                </div>
+                                <div class="report-value">60/85 (70.6%)</div>
+                            </div>
+                            <div class="report-row">
+                                <div class="report-label">CE</div>
+                                <div class="report-bar">
+                                    <div class="bar-fill" style="width: 55%"></div>
+                                </div>
+                                <div class="report-value">55/80 (68.8%)</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Company-wise Placements -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h2><i class="fas fa-briefcase"></i> Top Companies</h2>
+                        </div>
+                        <div class="card-body">
+                            <div class="report-row">
+                                <div class="report-label">Google</div>
+                                <div class="report-bar">
+                                    <div class="bar-fill" style="width: 90%"></div>
+                                </div>
+                                <div class="report-value">32 Students</div>
+                            </div>
+                            <div class="report-row">
+                                <div class="report-label">Microsoft</div>
+                                <div class="report-bar">
+                                    <div class="bar-fill" style="width: 78%"></div>
+                                </div>
+                                <div class="report-value">28 Students</div>
+                            </div>
+                            <div class="report-row">
+                                <div class="report-label">Amazon</div>
+                                <div class="report-bar">
+                                    <div class="bar-fill" style="width: 70%"></div>
+                                </div>
+                                <div class="report-value">25 Students</div>
+                            </div>
+                            <div class="report-row">
+                                <div class="report-label">TCS</div>
+                                <div class="report-bar">
+                                    <div class="bar-fill" style="width: 61%"></div>
+                                </div>
+                                <div class="report-value">22 Students</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Additional Statistics -->
+                <div class="content-grid">
+                    <!-- Monthly Placement Trend -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h2><i class="fas fa-calendar"></i> Monthly Placement Trend</h2>
+                        </div>
+                        <div class="card-body chart-container">
+                            <canvas id="trendChart"></canvas>
+                        </div>
+                    </div>
+
+                    <!-- Key Metrics -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h2><i class="fas fa-chart-line"></i> Key Metrics</h2>
+                        </div>
+                        <div class="card-body">
+                            <div class="metric-row">
+                                <span class="metric-label">Total Students:</span>
+                                <span class="metric-value">245</span>
+                            </div>
+                            <div class="metric-row">
+                                <span class="metric-label">Placed Students:</span>
+                                <span class="metric-value">178</span>
+                            </div>
+                            <div class="metric-row">
+                                <span class="metric-label">Placement Rate:</span>
+                                <span class="metric-value">72.7%</span>
+                            </div>
+                            <div class="metric-row">
+                                <span class="metric-label">Average Salary:</span>
+                                <span class="metric-value">12.5 LPA</span>
+                            </div>
+                            <div class="metric-row">
+                                <span class="metric-label">Highest Salary:</span>
+                                <span class="metric-value">18 LPA</span>
+                            </div>
+                            <div class="metric-row">
+                                <span class="metric-label">Lowest Salary:</span>
+                                <span class="metric-value">9 LPA</span>
+                            </div>
+                            <div class="metric-row">
+                                <span class="metric-label">Total Companies:</span>
+                                <span class="metric-value">42</span>
+                            </div>
+                            <div class="metric-row">
+                                <span class="metric-label">Active Job Postings:</span>
+                                <span class="metric-value">67</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <script src="script.js"></script>
+    <script>
+        // Placement Summary Pie Chart
+        const placementCtx = document.getElementById('placementChart').getContext('2d');
+        new Chart(placementCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Placed', 'Not Placed'],
+                datasets: [{
+                    data: [178, 67],
+                    backgroundColor: [
+                        'rgba(16, 185, 129, 0.8)',
+                        'rgba(239, 68, 68, 0.8)'
+                    ],
+                    borderColor: [
+                        'rgb(16, 185, 129)',
+                        'rgb(239, 68, 68)'
+                    ],
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true,
+                plugins: {
+                    legend: {
+                        position: 'bottom'
+                    }
+                }
+            }
+        });
+
+        // Salary Distribution Bar Chart
+        const salaryCtx = document.getElementById('salaryChart').getContext('2d');
+        new Chart(salaryCtx, {
+            type: 'bar',
+            data: {
+                labels: ['8-10 LPA', '10-12 LPA', '12-14 LPA', '14-16 LPA', '16-18 LPA', '18+ LPA'],
+                datasets: [{
+                    label: 'Number of Students',
+                    data: [25, 35, 45, 40, 28, 5],
+                    backgroundColor: [
+                        'rgba(99, 102, 241, 0.8)',
+                        'rgba(139, 92, 246, 0.8)',
+                        'rgba(59, 130, 246, 0.8)',
+                        'rgba(16, 185, 129, 0.8)',
+                        'rgba(245, 158, 11, 0.8)',
+                        'rgba(239, 68, 68, 0.8)'
+                    ],
+                    borderColor: [
+                        'rgb(99, 102, 241)',
+                        'rgb(139, 92, 246)',
+                        'rgb(59, 130, 246)',
+                        'rgb(16, 185, 129)',
+                        'rgb(245, 158, 11)',
+                        'rgb(239, 68, 68)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true,
+                plugins: {
+                    legend: {
+                        display: true,
+                        position: 'top'
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        // Monthly Placement Trend Line Chart
+        const trendCtx = document.getElementById('trendChart').getContext('2d');
+        new Chart(trendCtx, {
+            type: 'line',
+            data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug'],
+                datasets: [{
+                    label: 'Placements',
+                    data: [12, 19, 25, 18, 22, 28, 32, 38],
+                    borderColor: 'rgb(99, 102, 241)',
+                    backgroundColor: 'rgba(99, 102, 241, 0.1)',
+                    borderWidth: 2,
+                    fill: true,
+                    tension: 0.4,
+                    pointRadius: 5,
+                    pointBackgroundColor: 'rgb(99, 102, 241)',
+                    pointBorderColor: '#fff',
+                    pointBorderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true,
+                plugins: {
+                    legend: {
+                        display: true,
+                        position: 'top'
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

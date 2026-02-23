@@ -1,0 +1,273 @@
+WEEK 2 SESSION 7 – TRIGGERS
+
+BEFORE INSERT Trigger (OTP validation for driver)
+
+CREATE TABLE driver (
+id INT PRIMARY KEY AUTO_INCREMENT,
+name VARCHAR(100),
+otp VARCHAR(6)
+);
+
+DELIMITER $$
+
+CREATE TRIGGER before_driver_insert
+BEFORE INSERT ON driver
+FOR EACH ROW
+BEGIN
+IF NEW.otp IS NULL OR LENGTH(NEW.otp) <> 6 THEN
+SIGNAL SQLSTATE '45000'
+SET MESSAGE_TEXT = 'Invalid OTP';
+END IF;
+END$$
+
+DELIMITER ;
+
+AFTER INSERT Trigger (Auto update order total)
+
+CREATE TABLE orders (
+order_id INT PRIMARY KEY,
+total DECIMAL(10,2) DEFAULT 0
+);
+
+CREATE TABLE order_items (
+id INT AUTO_INCREMENT PRIMARY KEY,
+order_id INT,
+price DECIMAL(10,2)
+);
+
+DELIMITER $$
+
+CREATE TRIGGER after_item_insert
+AFTER INSERT ON order_items
+FOR EACH ROW
+BEGIN
+UPDATE orders
+SET total = total + NEW.price
+WHERE order_id = NEW.order_id;
+END$$
+
+DELIMITER ;
+
+Automatically set created_at timestamp
+
+CREATE TABLE users (
+id INT PRIMARY KEY AUTO_INCREMENT,
+name VARCHAR(100),
+created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+Prevent negative salary entry
+
+DELIMITER $$
+
+CREATE TRIGGER prevent_negative_salary
+BEFORE INSERT ON employee
+FOR EACH ROW
+BEGIN
+IF NEW.salary < 0 THEN
+SIGNAL SQLSTATE '45000'
+SET MESSAGE_TEXT = 'Salary cannot be negative';
+END IF;
+END$$
+
+DELIMITER ;
+
+Maintain audit log table
+
+CREATE TABLE employee_audit (
+emp_id INT,
+old_salary DECIMAL(10,2),
+old_department VARCHAR(100),
+updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+DELIMITER $$
+
+CREATE TRIGGER employee_update_audit
+BEFORE UPDATE ON employee
+FOR EACH ROW
+BEGIN
+INSERT INTO employee_audit(emp_id, old_salary, old_department)
+VALUES (OLD.id, OLD.salary, OLD.department);
+END$$
+
+DELIMITER ;
+
+WEEK 2 SESSION 7 – WORKING WITH DATE
+
+Find number of days between start_date and end_date
+
+SELECT DATEDIFF(end_date, start_date) AS days_difference FROM project;
+
+Find expiry date after 30 days
+
+SELECT DATE_ADD(start_date, INTERVAL 30 DAY) AS expiry_date FROM subscription;
+
+Get date before seven days from today
+
+SELECT DATE_SUB(CURDATE(), INTERVAL 7 DAY);
+
+Get records created on weekend dates
+
+SELECT * FROM orders
+WHERE DAYOFWEEK(created_at) IN (1,7);
+
+Convert string to date format and display month name
+
+SELECT MONTHNAME(STR_TO_DATE('15-02-2025','%d-%m-%Y'));
+
+WEEK 2 SESSION 8 – INDEXES
+
+Create index on email column
+
+CREATE INDEX idx_email ON users(email);
+
+Create UNIQUE index on username
+
+CREATE UNIQUE INDEX idx_username ON users(username);
+
+Drop index
+
+DROP INDEX idx_email ON users;
+
+Fix slow aadhar query using index
+
+CREATE INDEX idx_aadhar ON users(aadhar);
+
+Create composite index
+
+CREATE INDEX idx_status_created ON orders(status, created_at);
+
+WEEK 2 SESSION 9 – BUILT-IN FUNCTIONS
+
+Extract letters before @ and append 123
+
+SELECT CONCAT(SUBSTRING_INDEX(email,'@',1),'123') AS default_password
+FROM users;
+
+Remove symbols from contact number
+
+UPDATE users
+SET contact = REGEXP_REPLACE(contact, '[^0-9]', '');
+
+Normalize employee names
+
+SELECT CONCAT(
+UPPER(SUBSTRING(name,1,1)),
+LOWER(SUBSTRING(name,2))
+) AS normalized_name
+FROM employee;
+
+Use COALESCE for fallback contact
+
+SELECT COALESCE(mobile, phone, email) AS contact
+FROM users;
+
+Find average experience per department
+
+SELECT department,
+AVG(TIMESTAMPDIFF(YEAR, joining_date, CURDATE())) AS avg_experience
+FROM employee
+GROUP BY department;
+
+WEEK 2 SESSION 10 – USER DEFINED FUNCTIONS
+
+Function to calculate net salary after 10% tax
+
+DELIMITER $$
+
+CREATE FUNCTION net_salary(salary DECIMAL(10,2))
+RETURNS DECIMAL(10,2)
+DETERMINISTIC
+BEGIN
+RETURN salary - (salary * 0.10);
+END$$
+
+DELIMITER ;
+
+Function to check user activity
+
+DELIMITER $$
+
+CREATE FUNCTION user_status(last_login DATE)
+RETURNS VARCHAR(10)
+DETERMINISTIC
+BEGIN
+IF DATEDIFF(CURDATE(), last_login) <= 30 THEN
+RETURN 'Active';
+ELSE
+RETURN 'Inactive';
+END IF;
+END$$
+
+DELIMITER ;
+
+Dynamic tax slab calculation
+
+DELIMITER $$
+
+CREATE FUNCTION tax_calculator(salary INT)
+RETURNS DECIMAL(10,2)
+DETERMINISTIC
+BEGIN
+IF salary <= 300000 THEN
+RETURN 0;
+ELSEIF salary <= 600000 THEN
+RETURN salary * 0.10;
+ELSEIF salary <= 1000000 THEN
+RETURN salary * 0.20;
+ELSE
+RETURN salary * 0.30;
+END IF;
+END$$
+
+DELIMITER ;
+
+Employee categorization by experience
+
+DELIMITER $$
+
+CREATE FUNCTION emp_category(years INT)
+RETURNS VARCHAR(20)
+DETERMINISTIC
+BEGIN
+IF years < 2 THEN
+RETURN 'Fresher';
+ELSEIF years BETWEEN 2 AND 5 THEN
+RETURN 'Junior';
+ELSEIF years BETWEEN 6 AND 10 THEN
+RETURN 'Mid';
+ELSE
+RETURN 'Senior';
+END IF;
+END$$
+
+DELIMITER ;
+
+Late fee calculator (₹50 per day, max ₹1000)
+
+DELIMITER $$
+
+CREATE FUNCTION late_fee(due_date DATE)
+RETURNS INT
+DETERMINISTIC
+BEGIN
+DECLARE days_late INT;
+DECLARE fee INT;
+
+SET days_late = DATEDIFF(CURDATE(), due_date);
+
+IF days_late > 0 THEN
+    SET fee = days_late * 50;
+    IF fee > 1000 THEN
+        SET fee = 1000;
+    END IF;
+    RETURN fee;
+ELSE
+    RETURN 0;
+END IF;
+
+
+END$$
+
+DELIMITER;

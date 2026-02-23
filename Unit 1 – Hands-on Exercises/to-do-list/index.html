@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header class="app-header">
+            <h1>To‑Do List</h1>
+            <p class="subtitle">Simple task manager — add, complete, delete, and filter.</p>
+        </header>
+
+        <main class="app-main">
+            <form id="task-form" class="task-form" aria-label="Add task">
+                <input id="task-input" type="text" placeholder="What needs doing?" autocomplete="off">
+                <button id="add-btn" type="submit">Add</button>
+            </form>
+
+            <div id="error" class="error" role="alert" aria-live="assertive"></div>
+
+            <div class="controls">
+                <div class="filters" role="tablist" aria-label="Filter tasks">
+                    <button class="filter active" data-filter="all">All</button>
+                    <button class="filter" data-filter="pending">Pending</button>
+                    <button class="filter" data-filter="completed">Completed</button>
+                </div>
+                <div class="counts">Total: <span id="total-count">0</span></div>
+            </div>
+
+            <ul id="task-list" class="task-list" aria-live="polite"></ul>
+        </main>
+
+        <footer class="app-footer">Built with vanilla JavaScript • Responsive • Persistent</footer>
+    </div>
+
+    <script src="script.js" defer></script>
+</body>
+</html>

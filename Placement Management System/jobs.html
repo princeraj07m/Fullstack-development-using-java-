@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Postings - Placement Management System</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container-wrapper">
+        <!-- Left Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <i class="fas fa-graduation-cap"></i>
+                    <span>PMS</span>
+                </div>
+                <p class="subtitle">Placement Manager</p>
+            </div>
+
+            <nav class="sidebar-nav">
+                <ul>
+                    <li><a href="index.html" class="nav-link" data-section="dashboard"><i class="fas fa-home"></i> <span>Dashboard</span></a></li>
+                    <li><a href="students.html" class="nav-link" data-section="students"><i class="fas fa-users"></i> <span>Students</span></a></li>
+                    <li><a href="companies.html" class="nav-link" data-section="companies"><i class="fas fa-building"></i> <span>Companies</span></a></li>
+                    <li><a href="jobs.html" class="nav-link active" data-section="jobs"><i class="fas fa-briefcase"></i> <span>Job Postings</span></a></li>
+                    <li><a href="interviews.html" class="nav-link" data-section="interviews"><i class="fas fa-video"></i> <span>Interviews</span></a></li>
+                    <li><a href="drives.html" class="nav-link" data-section="drives"><i class="fas fa-calendar-alt"></i> <span>Upcoming Drives</span></a></li>
+                    <li><a href="placements.html" class="nav-link" data-section="placements"><i class="fas fa-check-circle"></i> <span>Placements</span></a></li>
+                    <li><a href="reports.html" class="nav-link" data-section="reports"><i class="fas fa-chart-bar"></i> <span>Reports</span></a></li>
+                </ul>
+            </nav>
+
+            <div class="sidebar-footer">
+                <a href="#profile" class="profile-link">
+                    <img src="https://via.placeholder.com/40" alt="Profile">
+                    <span>Profile</span>
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="top-header">
+                <div class="header-left">
+                    <button class="menu-toggle" id="menuToggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <h1>Job Postings</h1>
+                </div>
+                <div class="header-right">
+                    <div class="search-bar">
+                        <input type="text" placeholder="Search jobs...">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <div class="header-icons">
+                        <button class="icon-btn" title="Notifications">
+                            <i class="fas fa-bell"></i>
+                            <span class="badge">3</span>
+                        </button>
+                        <button class="icon-btn" title="Settings">
+                            <i class="fas fa-cog"></i>
+                        </button>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Content Section -->
+            <section class="content-section">
+                <!-- Filter and Action Bar -->
+                <div class="filter-bar">
+                    <div class="filter-group">
+                        <select>
+                            <option>All Status</option>
+                            <option>Open</option>
+                            <option>Closed</option>
+                            <option>On Hold</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <select>
+                            <option>All Companies</option>
+                            <option>Google</option>
+                            <option>Microsoft</option>
+                            <option>Amazon</option>
+                            <option>TCS</option>
+                        </select>
+                    </div>
+                    <button class="btn btn-primary" id="postJobBtn">
+                        <i class="fas fa-plus"></i> Post New Job
+                    </button>
+                </div>
+
+                <!-- Jobs List -->
+                <div class="jobs-list">
+                    <div class="job-card">
+                        <div class="job-header">
+                            <div class="job-title">
+                                <h3>Senior Software Engineer</h3>
+                                <p class="company-name">Google</p>
+                            </div>
+                            <span class="job-status open">Open</span>
+                        </div>
+                        <div class="job-details">
+                            <div class="job-meta">
+                                <span><i class="fas fa-map-marker-alt"></i> Bangalore, India</span>
+                                <span><i class="fas fa-briefcase"></i> Full-time</span>
+                                <span><i class="fas fa-graduation-cap"></i> B.Tech/B.E</span>
+                                <span><i class="fas fa-money-bill"></i> 15-18 LPA</span>
+                            </div>
+                            <p class="job-description">We are looking for experienced software engineers to join our team. Must have 2+ years of experience in core computer science.</p>
+                        </div>
+                        <div class="job-footer">
+                            <span class="applicants">28 Applicants</span>
+                            <div class="job-actions">
+                                <button class="action-btn-sm edit"><i class="fas fa-edit"></i> Edit</button>
+                                <button class="action-btn-sm view"><i class="fas fa-eye"></i> View</button>
+                                <button class="action-btn-sm delete"><i class="fas fa-trash"></i> Delete</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="job-card">
+                        <div class="job-header">
+                            <div class="job-title">
+                                <h3>Software Developer</h3>
+                                <p class="company-name">Microsoft</p>
+                            </div>
+                            <span class="job-status open">Open</span>
+                        </div>
+                        <div class="job-details">
+                            <div class="job-meta">
+                                <span><i class="fas fa-map-marker-alt"></i> Hyderabad, India</span>
+                                <span><i class="fas fa-briefcase"></i> Full-time</span>
+                                <span><i class="fas fa-graduation-cap"></i> B.Tech/B.E</span>
+                                <span><i class="fas fa-money-bill"></i> 14-16 LPA</span>
+                            </div>
+                            <p class="job-description">Seeking talented software developers for our cloud solutions team. Strong C++ and Python skills required.</p>
+                        </div>
+                        <div class="job-footer">
+                            <span class="applicants">22 Applicants</span>
+                            <div class="job-actions">
+                                <button class="action-btn-sm edit"><i class="fas fa-edit"></i> Edit</button>
+                                <button class="action-btn-sm view"><i class="fas fa-eye"></i> View</button>
+                                <button class="action-btn-sm delete"><i class="fas fa-trash"></i> Delete</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="job-card">
+                        <div class="job-header">
+                            <div class="job-title">
+                                <h3>Backend Engineer</h3>
+                                <p class="company-name">Amazon</p>
+                            </div>
+                            <span class="job-status open">Open</span>
+                        </div>
+                        <div class="job-details">
+                            <div class="job-meta">
+                                <span><i class="fas fa-map-marker-alt"></i> Delhi, India</span>
+                                <span><i class="fas fa-briefcase"></i> Full-time</span>
+                                <span><i class="fas fa-graduation-cap"></i> B.Tech/B.E</span>
+                                <span><i class="fas fa-money-bill"></i> 13.5-15.5 LPA</span>
+                            </div>
+                            <p class="job-description">Join our backend team and work on large-scale distributed systems. Java/Python experience preferred.</p>
+                        </div>
+                        <div class="job-footer">
+                            <span class="applicants">35 Applicants</span>
+                            <div class="job-actions">
+                                <button class="action-btn-sm edit"><i class="fas fa-edit"></i> Edit</button>
+                                <button class="action-btn-sm view"><i class="fas fa-eye"></i> View</button>
+                                <button class="action-btn-sm delete"><i class="fas fa-trash"></i> Delete</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="job-card">
+                        <div class="job-header">
+                            <div class="job-title">
+                                <h3>Java Developer</h3>
+                                <p class="company-name">TCS</p>
+                            </div>
+                            <span class="job-status closed">Closed</span>
+                        </div>
+                        <div class="job-details">
+                            <div class="job-meta">
+                                <span><i class="fas fa-map-marker-alt"></i> Mumbai, India</span>
+                                <span><i class="fas fa-briefcase"></i> Full-time</span>
+                                <span><i class="fas fa-graduation-cap"></i> B.Tech/B.E</span>
+                                <span><i class="fas fa-money-bill"></i> 9-11 LPA</span>
+                            </div>
+                            <p class="job-description">Urgent requirement for Java developers with Spring Boot experience. Fresher and experienced both can apply.</p>
+                        </div>
+                        <div class="job-footer">
+                            <span class="applicants">18 Applicants</span>
+                            <div class="job-actions">
+                                <button class="action-btn-sm edit"><i class="fas fa-edit"></i> Edit</button>
+                                <button class="action-btn-sm view"><i class="fas fa-eye"></i> View</button>
+                                <button class="action-btn-sm delete"><i class="fas fa-trash"></i> Delete</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="job-card">
+                        <div class="job-header">
+                            <div class="job-title">
+                                <h3>Data Scientist</h3>
+                                <p class="company-name">Google</p>
+                            </div>
+                            <span class="job-status open">Open</span>
+                        </div>
+                        <div class="job-details">
+                            <div class="job-meta">
+                                <span><i class="fas fa-map-marker-alt"></i> Bangalore, India</span>
+                                <span><i class="fas fa-briefcase"></i> Full-time</span>
+                                <span><i class="fas fa-graduation-cap"></i> B.Tech/B.E/M.Tech</span>
+                                <span><i class="fas fa-money-bill"></i> 16-19 LPA</span>
+                            </div>
+                            <p class="job-description">Looking for data scientists with expertise in ML and deep learning. Strong Python and SQL skills required.</p>
+                        </div>
+                        <div class="job-footer">
+                            <span class="applicants">12 Applicants</span>
+                            <div class="job-actions">
+                                <button class="action-btn-sm edit"><i class="fas fa-edit"></i> Edit</button>
+                                <button class="action-btn-sm view"><i class="fas fa-eye"></i> View</button>
+                                <button class="action-btn-sm delete"><i class="fas fa-trash"></i> Delete</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="job-card">
+                        <div class="job-header">
+                            <div class="job-title">
+                                <h3>Frontend Engineer</h3>
+                                <p class="company-name">Amazon</p>
+                            </div>
+                            <span class="job-status open">Open</span>
+                        </div>
+                        <div class="job-details">
+                            <div class="job-meta">
+                                <span><i class="fas fa-map-marker-alt"></i> Bangalore, India</span>
+                                <span><i class="fas fa-briefcase"></i> Full-time</span>
+                                <span><i class="fas fa-graduation-cap"></i> B.Tech/B.E</span>
+                                <span><i class="fas fa-money-bill"></i> 12-14 LPA</span>
+                            </div>
+                            <p class="job-description">Build amazing user experiences with React and TypeScript. Experience with modern web technologies essential.</p>
+                        </div>
+                        <div class="job-footer">
+                            <span class="applicants">42 Applicants</span>
+                            <div class="job-actions">
+                                <button class="action-btn-sm edit"><i class="fas fa-edit"></i> Edit</button>
+                                <button class="action-btn-sm view"><i class="fas fa-eye"></i> View</button>
+                                <button class="action-btn-sm delete"><i class="fas fa-trash"></i> Delete</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

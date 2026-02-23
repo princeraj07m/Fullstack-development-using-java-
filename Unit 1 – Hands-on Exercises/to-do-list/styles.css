@@ -1,0 +1,149 @@
+
+:root{
+	--bg:#f3f6f9;
+	--card:#ffffff;
+	--accent:#4f46e5;
+	--muted:#6b7280;
+	--success:#10b981;
+	--danger:#ef4444;
+}
+
+
+/*
+  styles.css — hand-tuned stylesheet
+  Written in a straightforward, human-friendly style with section comments
+*/
+
+/* --------------------
+   Color tokens & basics
+   -------------------- */
+
+*{ box-sizing: border-box; }
+html, body { height: 100%; }
+body{
+	margin: 0;
+	font-family: Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto,
+				 'Helvetica Neue', Arial;
+	-webkit-font-smoothing: antialiased; /* small touch for crisper text */
+	background: linear-gradient(180deg, var(--bg), #eef2ff 120%);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 32px;
+}
+
+/* --------------------
+   App container & header
+   -------------------- */
+.container{
+	width: 100%;
+	max-width: 520px;
+	background: var(--card);
+	border-radius: 14px;
+	box-shadow: 0 8px 30px rgba(15,23,42,0.08);
+	padding: 20px;
+}
+
+.app-header{ text-align: center; margin-bottom: 8px; }
+.app-header h1{ margin: 6px 0; font-size: 1.6rem; letter-spacing: 0.2px; }
+.subtitle{ color: var(--muted); margin: 0; font-size: 0.9rem; }
+
+/* --------------------
+   Form: input + add button
+   -------------------- */
+.task-form{ display: flex; gap: 8px; margin: 16px 0; }
+
+#task-input{
+	flex: 1;
+	padding: 10px 12px;
+	border-radius: 10px;
+	border: 1px solid #e6e9ef;
+	font-size: 1rem;
+	outline: none;
+	transition: box-shadow .15s ease, border-color .12s ease;
+}
+
+#task-input::placeholder{ color: #9ca3af; }
+
+#task-input:focus{
+	box-shadow: 0 6px 18px rgba(79,70,229,0.08);
+	border-color: var(--accent);
+}
+
+#add-btn{
+	background: var(--accent);
+	color: #fff;
+	border: none;
+	padding: 10px 14px;
+	border-radius: 10px;
+	cursor: pointer;
+	transition: transform .12s ease, box-shadow .12s ease;
+}
+
+#add-btn:hover{ transform: translateY(-2px); box-shadow: 0 6px 18px rgba(79,70,229,0.12); }
+#add-btn:active{ transform: translateY(0); }
+
+/* Error/help line beneath form */
+.error{ color: var(--danger); min-height: 20px; font-size: 0.9rem; margin-bottom: 8px; }
+
+/* --------------------
+   Controls: filters & counts
+   -------------------- */
+.controls{ display:flex; justify-content:space-between; align-items:center; gap:12px; margin-bottom:12px; }
+.filters{ display:flex; gap:8px; }
+.filter{
+	background: transparent;
+	border: 1px solid transparent;
+	padding: 7px 10px;
+	border-radius: 8px;
+	cursor: pointer;
+	color: var(--muted);
+}
+.filter.active{ background: rgba(79,70,229,0.08); color: var(--accent); border-color: rgba(79,70,229,0.12); }
+.counts{ color: var(--muted); font-size: 0.95rem; }
+
+/* --------------------
+   Task list items
+   -------------------- */
+.task-list{ list-style: none; padding: 0; margin: 0; }
+.task-item{
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	padding: 10px 12px;
+	border-radius: 10px;
+	margin-bottom: 8px;
+	transition: background .18s ease, transform .12s ease, opacity .18s ease;
+}
+.task-item:hover{ transform: translateY(-2px); }
+
+.task-checkbox{ width: 18px; height: 18px; cursor: pointer; transition: transform .12s ease; }
+.task-checkbox:active{ transform: scale(.98); }
+
+.task-title{ flex: 1; font-size: 1rem; color: #0f172a; }
+.task-title:hover{ color: #0b1220; }
+.task-meta{ display:flex; gap:8px; align-items:center; }
+
+.delete-btn{
+	background: transparent;
+	border: 1px solid transparent;
+	color: var(--danger);
+	padding: 6px 8px;
+	border-radius: 8px;
+	cursor: pointer;
+}
+.delete-btn:hover{ background: rgba(239,68,68,0.08); }
+
+/* Completed state: subtle background + line-through */
+.completed .task-title{ text-decoration: line-through; color: var(--muted); opacity: 0.85; }
+.completed{ background: linear-gradient(90deg, rgba(16,185,129,0.05), transparent); }
+
+/* Small responsive tweaks */
+@media (max-width: 480px){
+	.container{ padding: 14px; border-radius: 12px; }
+	#add-btn{ padding: 9px; }
+}
+
+/* Footer / small utility */
+.app-footer{ text-align: center; color: var(--muted); font-size: 0.85rem; margin-top: 12px; }
+

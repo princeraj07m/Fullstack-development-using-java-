@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<title>Student Registration</title>
+	<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+	<main class="page">
+		<section class="card" aria-labelledby="form-heading">
+			<h1 id="form-heading">Student Registration</h1>
+			<p class="lead">Register a student — all fields validated with JavaScript.</p>
+
+			<form id="reg-form" novalidate>
+				<div class="field">
+					<label for="fullName">Full Name</label>
+					<input id="fullName" name="fullName" type="text" autocomplete="name">
+					<div class="error" id="err-fullName" aria-live="polite"></div>
+				</div>
+
+				<div class="field">
+					<label for="email">Email</label>
+					<input id="email" name="email" type="email" autocomplete="email">
+					<div class="error" id="err-email" aria-live="polite"></div>
+				</div>
+
+				<div class="field">
+					<label for="phone">Phone Number</label>
+					<input id="phone" name="phone" type="tel" inputmode="numeric" placeholder="10 digits">
+					<div class="error" id="err-phone" aria-live="polite"></div>
+				</div>
+
+				<fieldset class="field radio-group" aria-label="Gender">
+					<legend>Gender</legend>
+					<div class="gender-options">
+						<label class="gender-option">
+							<input type="radio" name="gender" value="male">
+							<span class="gender-pill">Male</span>
+						</label>
+						<label class="gender-option">
+							<input type="radio" name="gender" value="female">
+							<span class="gender-pill">Female</span>
+						</label>
+						<label class="gender-option">
+							<input type="radio" name="gender" value="other">
+							<span class="gender-pill">Other</span>
+						</label>
+					</div>
+					<div class="error" id="err-gender" aria-live="polite"></div>
+				</fieldset>
+
+				<div class="field">
+					<label for="course">Course Selection</label>
+					<select id="course" name="course">
+						<option value="">-- select a course --</option>
+						<option>Computer Science</option>
+						<option>Business Administration</option>
+						<option>Design</option>
+						<option>Mathematics</option>
+					</select>
+					<div class="error" id="err-course" aria-live="polite"></div>
+				</div>
+
+				<div class="field">
+					<label for="password">Password</label>
+					<input id="password" name="password" type="password" autocomplete="new-password">
+					<div class="pw-strength" id="pw-strength">&nbsp;</div>
+					<div class="error" id="err-password" aria-live="polite"></div>
+				</div>
+
+				<div class="actions">
+					<button type="submit" id="submit-btn">Register</button>
+					<button type="reset" id="reset-btn" class="muted">Reset</button>
+				</div>
+
+				<div id="success" class="success" role="status" aria-live="polite"></div>
+			</form>
+		</section>
+	</main>
+
+	<script src="script.js" defer></script>
+</body>
+</html>

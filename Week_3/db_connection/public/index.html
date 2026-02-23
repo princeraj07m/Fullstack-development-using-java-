@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Placement Live Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h1>🎓 Placement Live Dashboard</h1>
+
+<div class="dashboard">
+    <div class="card"><h3>Total Students</h3><p id="totalStudents"></p></div>
+    <div class="card"><h3>Total Companies</h3><p id="totalCompanies"></p></div>
+    <div class="card"><h3>Total Jobs</h3><p id="totalJobs"></p></div>
+</div>
+
+<hr>
+
+<h2>📋 Students</h2>
+<table id="studentTable"></table>
+
+<h3>Add Student</h3>
+<form id="studentForm">
+    <input type="text" id="roll_no" placeholder="Roll No" required>
+    <input type="text" id="student_name" placeholder="Name" required>
+    <input type="email" id="student_email" placeholder="Email" required>
+    <input type="number" id="cgpa" placeholder="CGPA (0-10)" step="0.01" required>
+    <button>Add</button>
+</form>
+
+<hr>
+
+<h2>🏢 Companies</h2>
+<table id="companyTable"></table>
+
+<form id="companyForm">
+    <input type="text" id="company_name" placeholder="Company Name" required>
+    <input type="email" id="company_email" placeholder="Email">
+    <input type="text" id="location" placeholder="Location">
+    <input type="text" id="website" placeholder="Website">
+    <button>Add</button>
+</form>
+
+<hr>
+
+<h2>💼 Jobs</h2>
+<table id="jobTable"></table>
+
+<form id="jobForm">
+    <input type="number" id="company_id" placeholder="Company ID" required>
+    <input type="text" id="role" placeholder="Role" required>
+    <input type="number" id="package" placeholder="Package LPA" required>
+    <input type="number" id="min_cgpa" placeholder="Min CGPA" required>
+    <button>Add</button>
+</form>
+
+<script src="script.js"></script>
+</body>
+</html>

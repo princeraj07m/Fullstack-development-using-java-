@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upcoming Drives - Placement Management System</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container-wrapper">
+        <!-- Left Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <i class="fas fa-graduation-cap"></i>
+                    <span>PMS</span>
+                </div>
+                <p class="subtitle">Placement Manager</p>
+            </div>
+
+            <nav class="sidebar-nav">
+                <ul>
+                    <li><a href="index.html" class="nav-link" data-section="dashboard"><i class="fas fa-home"></i> <span>Dashboard</span></a></li>
+                    <li><a href="students.html" class="nav-link" data-section="students"><i class="fas fa-users"></i> <span>Students</span></a></li>
+                    <li><a href="companies.html" class="nav-link" data-section="companies"><i class="fas fa-building"></i> <span>Companies</span></a></li>
+                    <li><a href="jobs.html" class="nav-link" data-section="jobs"><i class="fas fa-briefcase"></i> <span>Job Postings</span></a></li>
+                    <li><a href="interviews.html" class="nav-link" data-section="interviews"><i class="fas fa-video"></i> <span>Interviews</span></a></li>
+                    <li><a href="drives.html" class="nav-link active" data-section="drives"><i class="fas fa-calendar-alt"></i> <span>Upcoming Drives</span></a></li>
+                    <li><a href="placements.html" class="nav-link" data-section="placements"><i class="fas fa-check-circle"></i> <span>Placements</span></a></li>
+                    <li><a href="reports.html" class="nav-link" data-section="reports"><i class="fas fa-chart-bar"></i> <span>Reports</span></a></li>
+                </ul>
+            </nav>
+
+            <div class="sidebar-footer">
+                <a href="#profile" class="profile-link">
+                    <img src="https://via.placeholder.com/40" alt="Profile">
+                    <span>Profile</span>
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="top-header">
+                <div class="header-left">
+                    <button class="menu-toggle" id="menuToggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <h1>Upcoming Recruitment Drives</h1>
+                </div>
+                <div class="header-right">
+                    <div class="search-bar">
+                        <input type="text" placeholder="Search drives...">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <div class="header-icons">
+                        <button class="icon-btn" title="Notifications">
+                            <i class="fas fa-bell"></i>
+                            <span class="badge">3</span>
+                        </button>
+                        <button class="icon-btn" title="Settings">
+                            <i class="fas fa-cog"></i>
+                        </button>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Content Section -->
+            <section class="content-section">
+                <!-- Filter and Action Bar -->
+                <div class="filter-bar">
+                    <div class="filter-group">
+                        <select>
+                            <option>All Status</option>
+                            <option>Upcoming</option>
+                            <option>Ongoing</option>
+                            <option>Completed</option>
+                        </select>
+                    </div>
+                    <button class="btn btn-primary" id="addDriveBtn">
+                        <i class="fas fa-plus"></i> Add Drive
+                    </button>
+                </div>
+
+                <!-- Drives Timeline -->
+                <div class="drives-timeline">
+                    <div class="drive-timeline-item">
+                        <div class="timeline-date">
+                            <span class="month">FEB</span>
+                            <span class="day">15</span>
+                        </div>
+                        <div class="timeline-line"></div>
+                        <div class="timeline-content">
+                            <div class="drive-card">
+                                <div class="drive-card-header">
+                                    <h3>Google Recruitment Drive</h3>
+                                    <span class="drive-status upcoming">Upcoming</span>
+                                </div>
+                                <div class="drive-card-body">
+                                    <div class="drive-info-row">
+                                        <i class="fas fa-calendar"></i>
+                                        <span><strong>Date:</strong> February 15, 2025</span>
+                                    </div>
+                                    <div class="drive-info-row">
+                                        <i class="fas fa-clock"></i>
+                                        <span><strong>Time:</strong> 09:00 AM - 05:00 PM</span>
+                                    </div>
+                                    <div class="drive-info-row">
+                                        <i class="fas fa-map-marker-alt"></i>
+                                        <span><strong>Location:</strong> Main Campus Auditorium</span>
+                                    </div>
+                                    <div class="drive-info-row">
+                                        <i class="fas fa-users"></i>
+                                        <span><strong>Spots Available:</strong> 20 positions</span>
+                                    </div>
+                                    <div class="drive-info-row">
+                                        <i class="fas fa-money-bill"></i>
+                                        <span><strong>Salary Range:</strong> 15-18 LPA</span>
+                                    </div>
+                                    <p class="drive-description">Google is hiring for Software Engineer and Product Manager roles. Excellent opportunity for CSE graduates.</p>
+                                </div>
+                                <div class="drive-card-footer">
+                                    <span class="registered">18 Registered</span>
+                                    <div class="drive-actions">
+                                        <button class="action-btn-sm edit"><i class="fas fa-edit"></i> Edit</button>
+                                        <button class="action-btn-sm view"><i class="fas fa-eye"></i> View</button>
+                                        <button class="action-btn-sm delete"><i class="fas fa-trash"></i> Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="drive-timeline-item">
+                        <div class="timeline-date">
+                            <span class="month">FEB</span>
+                            <span class="day">22</span>
+                        </div>
+                        <div class="timeline-line"></div>
+                        <div class="timeline-content">
+                            <div class="drive-card">
+                                <div class="drive-card-header">
+                                    <h3>Microsoft Campus Hiring</h3>
+                                    <span class="drive-status upcoming">Upcoming</span>
+                                </div>
+                                <div class="drive-card-body">
+                                    <div class="drive-info-row">
+                                        <i class="fas fa-calendar"></i>
+                                        <span><strong>Date:</strong> February 22, 2025</span>
+                                    </div>
+                                    <div class="drive-info-row">
+                                        <i class="fas fa-clock"></i>
+                                        <span><strong>Time:</strong> 10:00 AM - 04:00 PM</span>
+                                    </div>
+                                    <div class="drive-info-row">
+                                        <i class="fas fa-map-marker-alt"></i>
+                                        <span><strong>Location:</strong> Convention Hall</span>
+                                    </div>
+                                    <div class="drive-info-row">
+                                        <i class="fas fa-users"></i>
+                                        <span><strong>Spots Available:</strong> 15 positions</span>
+                                    </div>
+                                    <div class="drive-info-row">
+                                        <i class="fas fa-money-bill"></i>
+                                        <span><strong>Salary Range:</strong> 14-16 LPA</span>
+                                    </div>
+                                    <p class="drive-description">Microsoft is looking for talented software engineers with strong problem-solving skills. Cloud computing experience preferred.</p>
+                                </div>
+                                <div class="drive-card-footer">
+                                    <span class="registered">12 Registered</span>
+                                    <div class="drive-actions">
+                                        <button class="action-btn-sm edit"><i class="fas fa-edit"></i> Edit</button>
+                                        <button class="action-btn-sm view"><i class="fas fa-eye"></i> View</button>
+                                        <button class="action-btn-sm delete"><i class="fas fa-trash"></i> Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="drive-timeline-item">
+                        <div class="timeline-date">
+                            <span class="month">MAR</span>
+                            <span class="day">05</span>
+                        </div>
+                        <div class="timeline-line"></div>
+                        <div class="timeline-content">
+                            <div class="drive-card">
+                                <div class="drive-card-header">
+                                    <h3>Amazon Internship Drive</h3>
+                                    <span class="drive-status upcoming">Upcoming</span>
+                                </div>
+                                <div class="drive-card-body">
+                                    <div class="drive-info-row">
+                                        <i class="fas fa-calendar"></i>
+                                        <span><strong>Date:</strong> March 05, 2025</span>
+                                    </div>
+                                    <div class="drive-info-row">
+                                        <i class="fas fa-clock"></i>
+                                        <span><strong>Time:</strong> 08:00 AM - 06:00 PM</span>
+                                    </div>
+                                    <div class="drive-info-row">
+                                        <i class="fas fa-map-marker-alt"></i>
+                                        <span><strong>Location:</strong> Tech Building, Lab 3</span>
+                                    </div>
+                                    <div class="drive-info-row">
+                                        <i class="fas fa-users"></i>
+                                        <span><strong>Spots Available:</strong> 25 positions</span>
+                                    </div>
+                                    <div class="drive-info-row">
+                                        <i class="fas fa-money-bill"></i>
+                                        <span><strong>Salary Range:</strong> 8-10 LPA</span>
+                                    </div>
+                                    <p class="drive-description">Amazon is recruiting for their Summer Internship Program 2025. Great learning opportunity for second and third-year students.</p>
+                                </div>
+                                <div class="drive-card-footer">
+                                    <span class="registered">24 Registered</span>
+                                    <div class="drive-actions">
+                                        <button class="action-btn-sm edit"><i class="fas fa-edit"></i> Edit</button>
+                                        <button class="action-btn-sm view"><i class="fas fa-eye"></i> View</button>
+                                        <button class="action-btn-sm delete"><i class="fas fa-trash"></i> Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="drive-timeline-item">
+                        <div class="timeline-date">
+                            <span class="month">MAR</span>
+                            <span class="day">12</span>
+                        </div>
+                        <div class="timeline-line"></div>
+                        <div class="timeline-content">
+                            <div class="drive-card">
+                                <div class="drive-card-header">
+                                    <h3>TCS Recruitment Program</h3>
+                                    <span class="drive-status upcoming">Upcoming</span>
+                                </div>
+                                <div class="drive-card-body">
+                                    <div class="drive-info-row">
+                                        <i class="fas fa-calendar"></i>
+                                        <span><strong>Date:</strong> March 12, 2025</span>
+                                    </div>
+                                    <div class="drive-info-row">
+                                        <i class="fas fa-clock"></i>
+                                        <span><strong>Time:</strong> 09:00 AM - 05:00 PM</span>
+                                    </div>
+                                    <div class="drive-info-row">
+                                        <i class="fas fa-map-marker-alt"></i>
+                                        <span><strong>Location:</strong> Placement Office</span>
+                                    </div>
+                                    <div class="drive-info-row">
+                                        <i class="fas fa-users"></i>
+                                        <span><strong>Spots Available:</strong> 30 positions</span>
+                                    </div>
+                                    <div class="drive-info-row">
+                                        <i class="fas fa-money-bill"></i>
+                                        <span><strong>Salary Range:</strong> 9-11 LPA</span>
+                                    </div>
+                                    <p class="drive-description">TCS is one of India's largest IT companies. Open for freshers with strong technical knowledge and communication skills.</p>
+                                </div>
+                                <div class="drive-card-footer">
+                                    <span class="registered">28 Registered</span>
+                                    <div class="drive-actions">
+                                        <button class="action-btn-sm edit"><i class="fas fa-edit"></i> Edit</button>
+                                        <button class="action-btn-sm view"><i class="fas fa-eye"></i> View</button>
+                                        <button class="action-btn-sm delete"><i class="fas fa-trash"></i> Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="drive-timeline-item">
+                        <div class="timeline-date">
+                            <span class="month">MAR</span>
+                            <span class="day">20</span>
+                        </div>
+                        <div class="timeline-line"></div>
+                        <div class="timeline-content">
+                            <div class="drive-card">
+                                <div class="drive-card-header">
+                                    <h3>Infosys Campus Drive</h3>
+                                    <span class="drive-status upcoming">Upcoming</span>
+                                </div>
+                                <div class="drive-card-body">
+                                    <div class="drive-info-row">
+                                        <i class="fas fa-calendar"></i>
+                                        <span><strong>Date:</strong> March 20, 2025</span>
+                                    </div>
+                                    <div class="drive-info-row">
+                                        <i class="fas fa-clock"></i>
+                                        <span><strong>Time:</strong> 10:00 AM - 04:00 PM</span>
+                                    </div>
+                                    <div class="drive-info-row">
+                                        <i class="fas fa-map-marker-alt"></i>
+                                        <span><strong>Location:</strong> Seminar Hall B</span>
+                                    </div>
+                                    <div class="drive-info-row">
+                                        <i class="fas fa-users"></i>
+                                        <span><strong>Spots Available:</strong> 20 positions</span>
+                                    </div>
+                                    <div class="drive-info-row">
+                                        <i class="fas fa-money-bill"></i>
+                                        <span><strong>Salary Range:</strong> 9.5-10.5 LPA</span>
+                                    </div>
+                                    <p class="drive-description">Infosys is recruiting for their global delivery centers. Walk-in drive for all branches. Good opportunity for career growth.</p>
+                                </div>
+                                <div class="drive-card-footer">
+                                    <span class="registered">15 Registered</span>
+                                    <div class="drive-actions">
+                                        <button class="action-btn-sm edit"><i class="fas fa-edit"></i> Edit</button>
+                                        <button class="action-btn-sm view"><i class="fas fa-eye"></i> View</button>
+                                        <button class="action-btn-sm delete"><i class="fas fa-trash"></i> Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

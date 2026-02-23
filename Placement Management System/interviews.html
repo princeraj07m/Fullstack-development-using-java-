@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interviews Management - Placement Management System</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container-wrapper">
+        <!-- Left Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <i class="fas fa-graduation-cap"></i>
+                    <span>PMS</span>
+                </div>
+                <p class="subtitle">Placement Manager</p>
+            </div>
+
+            <nav class="sidebar-nav">
+                <ul>
+                    <li><a href="index.html" class="nav-link" data-section="dashboard"><i class="fas fa-home"></i> <span>Dashboard</span></a></li>
+                    <li><a href="students.html" class="nav-link" data-section="students"><i class="fas fa-users"></i> <span>Students</span></a></li>
+                    <li><a href="companies.html" class="nav-link" data-section="companies"><i class="fas fa-building"></i> <span>Companies</span></a></li>
+                    <li><a href="jobs.html" class="nav-link" data-section="jobs"><i class="fas fa-briefcase"></i> <span>Job Postings</span></a></li>
+                    <li><a href="interviews.html" class="nav-link active" data-section="interviews"><i class="fas fa-video"></i> <span>Interviews</span></a></li>
+                    <li><a href="drives.html" class="nav-link" data-section="drives"><i class="fas fa-calendar-alt"></i> <span>Upcoming Drives</span></a></li>
+                    <li><a href="placements.html" class="nav-link" data-section="placements"><i class="fas fa-check-circle"></i> <span>Placements</span></a></li>
+                    <li><a href="reports.html" class="nav-link" data-section="reports"><i class="fas fa-chart-bar"></i> <span>Reports</span></a></li>
+                </ul>
+            </nav>
+
+            <div class="sidebar-footer">
+                <a href="#profile" class="profile-link">
+                    <img src="https://via.placeholder.com/40" alt="Profile">
+                    <span>Profile</span>
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="top-header">
+                <div class="header-left">
+                    <button class="menu-toggle" id="menuToggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <h1>Interviews Management</h1>
+                </div>
+                <div class="header-right">
+                    <div class="search-bar">
+                        <input type="text" placeholder="Search interviews...">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <div class="header-icons">
+                        <button class="icon-btn" title="Notifications">
+                            <i class="fas fa-bell"></i>
+                            <span class="badge">3</span>
+                        </button>
+                        <button class="icon-btn" title="Settings">
+                            <i class="fas fa-cog"></i>
+                        </button>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Content Section -->
+            <section class="content-section">
+                <!-- Filter and Action Bar -->
+                <div class="filter-bar">
+                    <div class="filter-group">
+                        <select>
+                            <option>All Status</option>
+                            <option>Scheduled</option>
+                            <option>Completed</option>
+                            <option>Cancelled</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <select>
+                            <option>All Rounds</option>
+                            <option>Technical</option>
+                            <option>HR</option>
+                            <option>Coding</option>
+                        </select>
+                    </div>
+                    <button class="btn btn-primary" id="scheduleInterviewBtn">
+                        <i class="fas fa-plus"></i> Schedule Interview
+                    </button>
+                </div>
+
+                <!-- Interviews Timeline -->
+                <div class="interviews-timeline">
+                    <div class="interview-timeline-item">
+                        <div class="timeline-marker success">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <div class="timeline-content">
+                            <div class="interview-card">
+                                <div class="interview-header-info">
+                                    <div>
+                                        <h3>Rahul Sharma - Google</h3>
+                                        <p>Technical Round - Completed</p>
+                                    </div>
+                                    <span class="status-badge placed">Selected</span>
+                                </div>
+                                <div class="interview-details">
+                                    <div class="detail-item">
+                                        <span class="label">Date:</span>
+                                        <span class="value">Jan 25, 2025</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="label">Time:</span>
+                                        <span class="value">10:00 AM</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="label">Interviewer:</span>
+                                        <span class="value">John Smith</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="label">Duration:</span>
+                                        <span class="value">60 minutes</span>
+                                    </div>
+                                </div>
+                                <div class="interview-actions">
+                                    <button class="action-btn-sm edit"><i class="fas fa-edit"></i> Edit</button>
+                                    <button class="action-btn-sm view"><i class="fas fa-eye"></i> View Details</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="interview-timeline-item">
+                        <div class="timeline-marker pending">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="timeline-content">
+                            <div class="interview-card">
+                                <div class="interview-header-info">
+                                    <div>
+                                        <h3>Priya Patel - Microsoft</h3>
+                                        <p>HR Round - Scheduled</p>
+                                    </div>
+                                    <span class="status-badge pending">Pending</span>
+                                </div>
+                                <div class="interview-details">
+                                    <div class="detail-item">
+                                        <span class="label">Date:</span>
+                                        <span class="value">Feb 02, 2025</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="label">Time:</span>
+                                        <span class="value">02:00 PM</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="label">Interviewer:</span>
+                                        <span class="value">Sarah Johnson</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="label">Duration:</span>
+                                        <span class="value">30 minutes</span>
+                                    </div>
+                                </div>
+                                <div class="interview-actions">
+                                    <button class="action-btn-sm edit"><i class="fas fa-edit"></i> Edit</button>
+                                    <button class="action-btn-sm view"><i class="fas fa-eye"></i> View Details</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="interview-timeline-item">
+                        <div class="timeline-marker failed">
+                            <i class="fas fa-times"></i>
+                        </div>
+                        <div class="timeline-content">
+                            <div class="interview-card">
+                                <div class="interview-header-info">
+                                    <div>
+                                        <h3>Arjun Kumar - Amazon</h3>
+                                        <p>Coding Round - Completed</p>
+                                    </div>
+                                    <span class="status-badge failed">Not Selected</span>
+                                </div>
+                                <div class="interview-details">
+                                    <div class="detail-item">
+                                        <span class="label">Date:</span>
+                                        <span class="value">Jan 24, 2025</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="label">Time:</span>
+                                        <span class="value">11:00 AM</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="label">Interviewer:</span>
+                                        <span class="value">Mike Chen</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="label">Duration:</span>
+                                        <span class="value">90 minutes</span>
+                                    </div>
+                                </div>
+                                <div class="interview-actions">
+                                    <button class="action-btn-sm edit"><i class="fas fa-edit"></i> Edit</button>
+                                    <button class="action-btn-sm view"><i class="fas fa-eye"></i> View Details</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="interview-timeline-item">
+                        <div class="timeline-marker success">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <div class="timeline-content">
+                            <div class="interview-card">
+                                <div class="interview-header-info">
+                                    <div>
+                                        <h3>Neha Singh - TCS</h3>
+                                        <p>Technical Round - Completed</p>
+                                    </div>
+                                    <span class="status-badge placed">Selected</span>
+                                </div>
+                                <div class="interview-details">
+                                    <div class="detail-item">
+                                        <span class="label">Date:</span>
+                                        <span class="value">Jan 23, 2025</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="label">Time:</span>
+                                        <span class="value">03:00 PM</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="label">Interviewer:</span>
+                                        <span class="value">Raj Patel</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="label">Duration:</span>
+                                        <span class="value">60 minutes</span>
+                                    </div>
+                                </div>
+                                <div class="interview-actions">
+                                    <button class="action-btn-sm edit"><i class="fas fa-edit"></i> Edit</button>
+                                    <button class="action-btn-sm view"><i class="fas fa-eye"></i> View Details</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="interview-timeline-item">
+                        <div class="timeline-marker pending">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="timeline-content">
+                            <div class="interview-card">
+                                <div class="interview-header-info">
+                                    <div>
+                                        <h3>Vikram Singh - Infosys</h3>
+                                        <p>First Round - Scheduled</p>
+                                    </div>
+                                    <span class="status-badge pending">Pending</span>
+                                </div>
+                                <div class="interview-details">
+                                    <div class="detail-item">
+                                        <span class="label">Date:</span>
+                                        <span class="value">Feb 05, 2025</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="label">Time:</span>
+                                        <span class="value">09:00 AM</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="label">Interviewer:</span>
+                                        <span class="value">Priya Gupta</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="label">Duration:</span>
+                                        <span class="value">45 minutes</span>
+                                    </div>
+                                </div>
+                                <div class="interview-actions">
+                                    <button class="action-btn-sm edit"><i class="fas fa-edit"></i> Edit</button>
+                                    <button class="action-btn-sm view"><i class="fas fa-eye"></i> View Details</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: gilroy;
+}
+
+html,
+body {
+    height: 100%;
+    width: 100%;
+    color: white !important;
+    background-color: black !important;
+}
+
+
+.menu-list{
+    list-style: none;
+}
+
+a{
+    text-decoration: none !important;
+    color: white !important;
+    padding: 10px 0;
+    cursor: pointer;
+}
+
+/* body */
+.hero-image{
+    
+}
+.screen-75{
+    height: 75vh;
+
+}

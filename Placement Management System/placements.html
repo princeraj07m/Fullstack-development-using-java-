@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Placements - Placement Management System</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container-wrapper">
+        <!-- Left Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <i class="fas fa-graduation-cap"></i>
+                    <span>PMS</span>
+                </div>
+                <p class="subtitle">Placement Manager</p>
+            </div>
+
+            <nav class="sidebar-nav">
+                <ul>
+                    <li><a href="index.html" class="nav-link" data-section="dashboard"><i class="fas fa-home"></i> <span>Dashboard</span></a></li>
+                    <li><a href="students.html" class="nav-link" data-section="students"><i class="fas fa-users"></i> <span>Students</span></a></li>
+                    <li><a href="companies.html" class="nav-link" data-section="companies"><i class="fas fa-building"></i> <span>Companies</span></a></li>
+                    <li><a href="jobs.html" class="nav-link" data-section="jobs"><i class="fas fa-briefcase"></i> <span>Job Postings</span></a></li>
+                    <li><a href="interviews.html" class="nav-link" data-section="interviews"><i class="fas fa-video"></i> <span>Interviews</span></a></li>
+                    <li><a href="drives.html" class="nav-link" data-section="drives"><i class="fas fa-calendar-alt"></i> <span>Upcoming Drives</span></a></li>
+                    <li><a href="placements.html" class="nav-link active" data-section="placements"><i class="fas fa-check-circle"></i> <span>Placements</span></a></li>
+                    <li><a href="reports.html" class="nav-link" data-section="reports"><i class="fas fa-chart-bar"></i> <span>Reports</span></a></li>
+                </ul>
+            </nav>
+
+            <div class="sidebar-footer">
+                <a href="#profile" class="profile-link">
+                    <img src="https://via.placeholder.com/40" alt="Profile">
+                    <span>Profile</span>
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="top-header">
+                <div class="header-left">
+                    <button class="menu-toggle" id="menuToggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <h1>Placements Record</h1>
+                </div>
+                <div class="header-right">
+                    <div class="search-bar">
+                        <input type="text" placeholder="Search placements...">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <div class="header-icons">
+                        <button class="icon-btn" title="Notifications">
+                            <i class="fas fa-bell"></i>
+                            <span class="badge">3</span>
+                        </button>
+                        <button class="icon-btn" title="Settings">
+                            <i class="fas fa-cog"></i>
+                        </button>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Content Section -->
+            <section class="content-section">
+                <!-- Filter and Action Bar -->
+                <div class="filter-bar">
+                    <div class="filter-group">
+                        <select>
+                            <option>All Companies</option>
+                            <option>Google</option>
+                            <option>Microsoft</option>
+                            <option>Amazon</option>
+                            <option>TCS</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <select>
+                            <option>All Batches</option>
+                            <option>2024</option>
+                            <option>2023</option>
+                            <option>2022</option>
+                        </select>
+                    </div>
+                    <button class="btn btn-primary" id="exportBtn">
+                        <i class="fas fa-download"></i> Export
+                    </button>
+                </div>
+
+                <!-- Placement Stats -->
+                <div class="stats-grid placement-stats">
+                    <div class="stat-card">
+                        <div class="stat-icon placed">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3>Total Placements</h3>
+                            <p class="stat-number">178</p>
+                            <span class="stat-label">Out of 245 students</span>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-percentage"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3>Placement Rate</h3>
+                            <p class="stat-number">72.7%</p>
+                            <span class="stat-label">Success rate</span>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-money-bill"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3>Average Salary</h3>
+                            <p class="stat-number">12.5 LPA</p>
+                            <span class="stat-label">Across all placements</span>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-trophy"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3>Highest Salary</h3>
+                            <p class="stat-number">18 LPA</p>
+                            <span class="stat-label">Google - Rahul Sharma</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Placements Table -->
+                <div class="card">
+                    <div class="card-header">
+                        <h2><i class="fas fa-star"></i> Placement Details</h2>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Student Name</th>
+                                    <th>Student ID</th>
+                                    <th>Branch</th>
+                                    <th>Company</th>
+                                    <th>Position</th>
+                                    <th>Salary (LPA)</th>
+                                    <th>Placement Date</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Rahul Sharma</td>
+                                    <td>#CSE001</td>
+                                    <td>CSE</td>
+                                    <td>Google</td>
+                                    <td>Senior Engineer</td>
+                                    <td><span class="salary-highlight">18 LPA</span></td>
+                                    <td>Jan 15, 2025</td>
+                                    <td>
+                                        <button class="action-icon view" title="View"><i class="fas fa-eye"></i></button>
+                                        <button class="action-icon delete" title="Delete"><i class="fas fa-trash"></i></button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Priya Patel</td>
+                                    <td>#CSE002</td>
+                                    <td>CSE</td>
+                                    <td>Microsoft</td>
+                                    <td>Software Developer</td>
+                                    <td><span class="salary-highlight">16 LPA</span></td>
+                                    <td>Jan 10, 2025</td>
+                                    <td>
+                                        <button class="action-icon view" title="View"><i class="fas fa-eye"></i></button>
+                                        <button class="action-icon delete" title="Delete"><i class="fas fa-trash"></i></button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Vikram Singh</td>
+                                    <td>#ECE001</td>
+                                    <td>ECE</td>
+                                    <td>Amazon</td>
+                                    <td>Backend Engineer</td>
+                                    <td><span class="salary-highlight">15.5 LPA</span></td>
+                                    <td>Jan 08, 2025</td>
+                                    <td>
+                                        <button class="action-icon view" title="View"><i class="fas fa-eye"></i></button>
+                                        <button class="action-icon delete" title="Delete"><i class="fas fa-trash"></i></button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Neha Gupta</td>
+                                    <td>#CSE003</td>
+                                    <td>CSE</td>
+                                    <td>Facebook</td>
+                                    <td>Data Scientist</td>
+                                    <td><span class="salary-highlight">17 LPA</span></td>
+                                    <td>Jan 05, 2025</td>
+                                    <td>
+                                        <button class="action-icon view" title="View"><i class="fas fa-eye"></i></button>
+                                        <button class="action-icon delete" title="Delete"><i class="fas fa-trash"></i></button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Arjun Kumar</td>
+                                    <td>#CSE004</td>
+                                    <td>CSE</td>
+                                    <td>Apple</td>
+                                    <td>iOS Developer</td>
+                                    <td><span class="salary-highlight">16.5 LPA</span></td>
+                                    <td>Dec 28, 2024</td>
+                                    <td>
+                                        <button class="action-icon view" title="View"><i class="fas fa-eye"></i></button>
+                                        <button class="action-icon delete" title="Delete"><i class="fas fa-trash"></i></button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Ananya Singh</td>
+                                    <td>#ECE002</td>
+                                    <td>ECE</td>
+                                    <td>Google</td>
+                                    <td>Hardware Engineer</td>
+                                    <td><span class="salary-highlight">14 LPA</span></td>
+                                    <td>Dec 25, 2024</td>
+                                    <td>
+                                        <button class="action-icon view" title="View"><i class="fas fa-eye"></i></button>
+                                        <button class="action-icon delete" title="Delete"><i class="fas fa-trash"></i></button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Neha Singh</td>
+                                    <td>#ME001</td>
+                                    <td>ME</td>
+                                    <td>TCS</td>
+                                    <td>Software Engineer</td>
+                                    <td><span class="salary-highlight">10 LPA</span></td>
+                                    <td>Dec 20, 2024</td>
+                                    <td>
+                                        <button class="action-icon view" title="View"><i class="fas fa-eye"></i></button>
+                                        <button class="action-icon delete" title="Delete"><i class="fas fa-trash"></i></button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Ravi Kumar</td>
+                                    <td>#CE001</td>
+                                    <td>CE</td>
+                                    <td>Infosys</td>
+                                    <td>Systems Engineer</td>
+                                    <td><span class="salary-highlight">9.5 LPA</span></td>
+                                    <td>Dec 15, 2024</td>
+                                    <td>
+                                        <button class="action-icon view" title="View"><i class="fas fa-eye"></i></button>
+                                        <button class="action-icon delete" title="Delete"><i class="fas fa-trash"></i></button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Pagination -->
+                <div class="pagination">
+                    <button class="page-btn">&laquo; Previous</button>
+                    <button class="page-btn active">1</button>
+                    <button class="page-btn">2</button>
+                    <button class="page-btn">3</button>
+                    <button class="page-btn">Next &raquo;</button>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Companies Management - Placement Management System</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container-wrapper">
+        <!-- Left Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <i class="fas fa-graduation-cap"></i>
+                    <span>PMS</span>
+                </div>
+                <p class="subtitle">Placement Manager</p>
+            </div>
+
+            <nav class="sidebar-nav">
+                <ul>
+                    <li><a href="index.html" class="nav-link" data-section="dashboard"><i class="fas fa-home"></i> <span>Dashboard</span></a></li>
+                    <li><a href="students.html" class="nav-link" data-section="students"><i class="fas fa-users"></i> <span>Students</span></a></li>
+                    <li><a href="companies.html" class="nav-link active" data-section="companies"><i class="fas fa-building"></i> <span>Companies</span></a></li>
+                    <li><a href="jobs.html" class="nav-link" data-section="jobs"><i class="fas fa-briefcase"></i> <span>Job Postings</span></a></li>
+                    <li><a href="interviews.html" class="nav-link" data-section="interviews"><i class="fas fa-video"></i> <span>Interviews</span></a></li>
+                    <li><a href="drives.html" class="nav-link" data-section="drives"><i class="fas fa-calendar-alt"></i> <span>Upcoming Drives</span></a></li>
+                    <li><a href="placements.html" class="nav-link" data-section="placements"><i class="fas fa-check-circle"></i> <span>Placements</span></a></li>
+                    <li><a href="reports.html" class="nav-link" data-section="reports"><i class="fas fa-chart-bar"></i> <span>Reports</span></a></li>
+                </ul>
+            </nav>
+
+            <div class="sidebar-footer">
+                <a href="#profile" class="profile-link">
+                    <img src="https://via.placeholder.com/40" alt="Profile">
+                    <span>Profile</span>
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="top-header">
+                <div class="header-left">
+                    <button class="menu-toggle" id="menuToggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <h1>Companies Management</h1>
+                </div>
+                <div class="header-right">
+                    <div class="search-bar">
+                        <input type="text" placeholder="Search companies...">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <div class="header-icons">
+                        <button class="icon-btn" title="Notifications">
+                            <i class="fas fa-bell"></i>
+                            <span class="badge">3</span>
+                        </button>
+                        <button class="icon-btn" title="Settings">
+                            <i class="fas fa-cog"></i>
+                        </button>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Content Section -->
+            <section class="content-section">
+                <!-- Filter and Action Bar -->
+                <div class="filter-bar">
+                    <div class="filter-group">
+                        <select>
+                            <option>All Status</option>
+                            <option>Active</option>
+                            <option>Inactive</option>
+                        </select>
+                    </div>
+                    <button class="btn btn-primary" id="addCompanyBtn">
+                        <i class="fas fa-plus"></i> Add Company
+                    </button>
+                </div>
+
+                <!-- Companies Grid -->
+                <div class="companies-grid">
+                    <div class="company-card">
+                        <div class="company-header">
+                            <div class="company-logo">
+                                <i class="fas fa-building"></i>
+                            </div>
+                            <div class="company-status active">Active</div>
+                        </div>
+                        <div class="company-info">
+                            <h3>Google</h3>
+                            <p class="company-category">Technology</p>
+                            <div class="company-stats-mini">
+                                <div class="stat">
+                                    <span class="stat-value">32</span>
+                                    <span class="stat-label">Placements</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="stat-value">8</span>
+                                    <span class="stat-label">Open Jobs</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="stat-value">15</span>
+                                    <span class="stat-label">Avg Salary</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="company-actions">
+                            <button class="action-btn-sm edit"><i class="fas fa-edit"></i></button>
+                            <button class="action-btn-sm view"><i class="fas fa-eye"></i></button>
+                            <button class="action-btn-sm delete"><i class="fas fa-trash"></i></button>
+                        </div>
+                    </div>
+
+                    <div class="company-card">
+                        <div class="company-header">
+                            <div class="company-logo">
+                                <i class="fas fa-building"></i>
+                            </div>
+                            <div class="company-status active">Active</div>
+                        </div>
+                        <div class="company-info">
+                            <h3>Microsoft</h3>
+                            <p class="company-category">Technology</p>
+                            <div class="company-stats-mini">
+                                <div class="stat">
+                                    <span class="stat-value">28</span>
+                                    <span class="stat-label">Placements</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="stat-value">6</span>
+                                    <span class="stat-label">Open Jobs</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="stat-value">14</span>
+                                    <span class="stat-label">Avg Salary</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="company-actions">
+                            <button class="action-btn-sm edit"><i class="fas fa-edit"></i></button>
+                            <button class="action-btn-sm view"><i class="fas fa-eye"></i></button>
+                            <button class="action-btn-sm delete"><i class="fas fa-trash"></i></button>
+                        </div>
+                    </div>
+
+                    <div class="company-card">
+                        <div class="company-header">
+                            <div class="company-logo">
+                                <i class="fas fa-building"></i>
+                            </div>
+                            <div class="company-status active">Active</div>
+                        </div>
+                        <div class="company-info">
+                            <h3>Amazon</h3>
+                            <p class="company-category">Technology</p>
+                            <div class="company-stats-mini">
+                                <div class="stat">
+                                    <span class="stat-value">25</span>
+                                    <span class="stat-label">Placements</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="stat-value">5</span>
+                                    <span class="stat-label">Open Jobs</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="stat-value">13.5</span>
+                                    <span class="stat-label">Avg Salary</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="company-actions">
+                            <button class="action-btn-sm edit"><i class="fas fa-edit"></i></button>
+                            <button class="action-btn-sm view"><i class="fas fa-eye"></i></button>
+                            <button class="action-btn-sm delete"><i class="fas fa-trash"></i></button>
+                        </div>
+                    </div>
+
+                    <div class="company-card">
+                        <div class="company-header">
+                            <div class="company-logo">
+                                <i class="fas fa-building"></i>
+                            </div>
+                            <div class="company-status active">Active</div>
+                        </div>
+                        <div class="company-info">
+                            <h3>TCS</h3>
+                            <p class="company-category">IT Services</p>
+                            <div class="company-stats-mini">
+                                <div class="stat">
+                                    <span class="stat-value">22</span>
+                                    <span class="stat-label">Placements</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="stat-value">4</span>
+                                    <span class="stat-label">Open Jobs</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="stat-value">10</span>
+                                    <span class="stat-label">Avg Salary</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="company-actions">
+                            <button class="action-btn-sm edit"><i class="fas fa-edit"></i></button>
+                            <button class="action-btn-sm view"><i class="fas fa-eye"></i></button>
+                            <button class="action-btn-sm delete"><i class="fas fa-trash"></i></button>
+                        </div>
+                    </div>
+
+                    <div class="company-card">
+                        <div class="company-header">
+                            <div class="company-logo">
+                                <i class="fas fa-building"></i>
+                            </div>
+                            <div class="company-status active">Active</div>
+                        </div>
+                        <div class="company-info">
+                            <h3>Infosys</h3>
+                            <p class="company-category">IT Services</p>
+                            <div class="company-stats-mini">
+                                <div class="stat">
+                                    <span class="stat-value">18</span>
+                                    <span class="stat-label">Placements</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="stat-value">3</span>
+                                    <span class="stat-label">Open Jobs</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="stat-value">9.5</span>
+                                    <span class="stat-label">Avg Salary</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="company-actions">
+                            <button class="action-btn-sm edit"><i class="fas fa-edit"></i></button>
+                            <button class="action-btn-sm view"><i class="fas fa-eye"></i></button>
+                            <button class="action-btn-sm delete"><i class="fas fa-trash"></i></button>
+                        </div>
+                    </div>
+
+                    <div class="company-card">
+                        <div class="company-header">
+                            <div class="company-logo">
+                                <i class="fas fa-building"></i>
+                            </div>
+                            <div class="company-status active">Active</div>
+                        </div>
+                        <div class="company-info">
+                            <h3>Wipro</h3>
+                            <p class="company-category">IT Services</p>
+                            <div class="company-stats-mini">
+                                <div class="stat">
+                                    <span class="stat-value">15</span>
+                                    <span class="stat-label">Placements</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="stat-value">2</span>
+                                    <span class="stat-label">Open Jobs</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="stat-value">9</span>
+                                    <span class="stat-label">Avg Salary</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="company-actions">
+                            <button class="action-btn-sm edit"><i class="fas fa-edit"></i></button>
+                            <button class="action-btn-sm view"><i class="fas fa-eye"></i></button>
+                            <button class="action-btn-sm delete"><i class="fas fa-trash"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

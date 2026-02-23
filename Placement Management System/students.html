@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Students Management - Placement Management System</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container-wrapper">
+        <!-- Left Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <i class="fas fa-graduation-cap"></i>
+                    <span>PMS</span>
+                </div>
+                <p class="subtitle">Placement Manager</p>
+            </div>
+
+            <nav class="sidebar-nav">
+                <ul>
+                    <li><a href="index.html" class="nav-link" data-section="dashboard"><i class="fas fa-home"></i> <span>Dashboard</span></a></li>
+                    <li><a href="students.html" class="nav-link active" data-section="students"><i class="fas fa-users"></i> <span>Students</span></a></li>
+                    <li><a href="companies.html" class="nav-link" data-section="companies"><i class="fas fa-building"></i> <span>Companies</span></a></li>
+                    <li><a href="jobs.html" class="nav-link" data-section="jobs"><i class="fas fa-briefcase"></i> <span>Job Postings</span></a></li>
+                    <li><a href="interviews.html" class="nav-link" data-section="interviews"><i class="fas fa-video"></i> <span>Interviews</span></a></li>
+                    <li><a href="drives.html" class="nav-link" data-section="drives"><i class="fas fa-calendar-alt"></i> <span>Upcoming Drives</span></a></li>
+                    <li><a href="placements.html" class="nav-link" data-section="placements"><i class="fas fa-check-circle"></i> <span>Placements</span></a></li>
+                    <li><a href="reports.html" class="nav-link" data-section="reports"><i class="fas fa-chart-bar"></i> <span>Reports</span></a></li>
+                </ul>
+            </nav>
+
+            <div class="sidebar-footer">
+                <a href="#profile" class="profile-link">
+                    <img src="https://via.placeholder.com/40" alt="Profile">
+                    <span>Profile</span>
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="top-header">
+                <div class="header-left">
+                    <button class="menu-toggle" id="menuToggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <h1>Students Management</h1>
+                </div>
+                <div class="header-right">
+                    <div class="search-bar">
+                        <input type="text" placeholder="Search students by name or ID...">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <div class="header-icons">
+                        <button class="icon-btn" title="Notifications">
+                            <i class="fas fa-bell"></i>
+                            <span class="badge">3</span>
+                        </button>
+                        <button class="icon-btn" title="Settings">
+                            <i class="fas fa-cog"></i>
+                        </button>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Content Section -->
+            <section class="content-section">
+                <!-- Filter and Action Bar -->
+                <div class="filter-bar">
+                    <div class="filter-group">
+                        <select>
+                            <option>All Students</option>
+                            <option>Placed</option>
+                            <option>Not Placed</option>
+                            <option>In Process</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <select>
+                            <option>All Branches</option>
+                            <option>CSE</option>
+                            <option>ECE</option>
+                            <option>ME</option>
+                            <option>CE</option>
+                        </select>
+                    </div>
+                    <button class="btn btn-primary" id="addStudentBtn">
+                        <i class="fas fa-plus"></i> Add Student
+                    </button>
+                </div>
+
+                <!-- Students Table -->
+                <div class="card">
+                    <div class="card-header">
+                        <h2><i class="fas fa-users"></i> All Students</h2>
+                        <span class="table-info">Total: 245 Students</span>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Student ID</th>
+                                    <th>Name</th>
+                                    <th>Branch</th>
+                                    <th>Email</th>
+                                    <th>Phone</th>
+                                    <th>Placement Status</th>
+                                    <th>Company</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>#CSE001</td>
+                                    <td>Rahul Sharma</td>
+                                    <td>CSE</td>
+                                    <td>rahul.sharma@example.com</td>
+                                    <td>+91-9876543210</td>
+                                    <td><span class="status-badge placed">Placed</span></td>
+                                    <td>Google</td>
+                                    <td>
+                                        <button class="action-icon edit" title="Edit"><i class="fas fa-edit"></i></button>
+                                        <button class="action-icon view" title="View"><i class="fas fa-eye"></i></button>
+                                        <button class="action-icon delete" title="Delete"><i class="fas fa-trash"></i></button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>#CSE002</td>
+                                    <td>Priya Patel</td>
+                                    <td>CSE</td>
+                                    <td>priya.patel@example.com</td>
+                                    <td>+91-9876543211</td>
+                                    <td><span class="status-badge placed">Placed</span></td>
+                                    <td>Microsoft</td>
+                                    <td>
+                                        <button class="action-icon edit" title="Edit"><i class="fas fa-edit"></i></button>
+                                        <button class="action-icon view" title="View"><i class="fas fa-eye"></i></button>
+                                        <button class="action-icon delete" title="Delete"><i class="fas fa-trash"></i></button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>#ECE001</td>
+                                    <td>Vikram Singh</td>
+                                    <td>ECE</td>
+                                    <td>vikram.singh@example.com</td>
+                                    <td>+91-9876543212</td>
+                                    <td><span class="status-badge pending">In Process</span></td>
+                                    <td>-</td>
+                                    <td>
+                                        <button class="action-icon edit" title="Edit"><i class="fas fa-edit"></i></button>
+                                        <button class="action-icon view" title="View"><i class="fas fa-eye"></i></button>
+                                        <button class="action-icon delete" title="Delete"><i class="fas fa-trash"></i></button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>#CSE003</td>
+                                    <td>Neha Singh</td>
+                                    <td>CSE</td>
+                                    <td>neha.singh@example.com</td>
+                                    <td>+91-9876543213</td>
+                                    <td><span class="status-badge placed">Placed</span></td>
+                                    <td>TCS</td>
+                                    <td>
+                                        <button class="action-icon edit" title="Edit"><i class="fas fa-edit"></i></button>
+                                        <button class="action-icon view" title="View"><i class="fas fa-eye"></i></button>
+                                        <button class="action-icon delete" title="Delete"><i class="fas fa-trash"></i></button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>#ME001</td>
+                                    <td>Arjun Kumar</td>
+                                    <td>ME</td>
+                                    <td>arjun.kumar@example.com</td>
+                                    <td>+91-9876543214</td>
+                                    <td><span class="status-badge notplaced">Not Placed</span></td>
+                                    <td>-</td>
+                                    <td>
+                                        <button class="action-icon edit" title="Edit"><i class="fas fa-edit"></i></button>
+                                        <button class="action-icon view" title="View"><i class="fas fa-eye"></i></button>
+                                        <button class="action-icon delete" title="Delete"><i class="fas fa-trash"></i></button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>#CE001</td>
+                                    <td>Ananya Gupta</td>
+                                    <td>CE</td>
+                                    <td>ananya.gupta@example.com</td>
+                                    <td>+91-9876543215</td>
+                                    <td><span class="status-badge placed">Placed</span></td>
+                                    <td>Amazon</td>
+                                    <td>
+                                        <button class="action-icon edit" title="Edit"><i class="fas fa-edit"></i></button>
+                                        <button class="action-icon view" title="View"><i class="fas fa-eye"></i></button>
+                                        <button class="action-icon delete" title="Delete"><i class="fas fa-trash"></i></button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Pagination -->
+                <div class="pagination">
+                    <button class="page-btn">&laquo; Previous</button>
+                    <button class="page-btn active">1</button>
+                    <button class="page-btn">2</button>
+                    <button class="page-btn">3</button>
+                    <button class="page-btn">Next &raquo;</button>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
