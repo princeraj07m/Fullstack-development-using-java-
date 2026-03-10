@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Transactions | Relational Inventory Control</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/transactions.css" />
+  </head>
+  <body data-page="transactions">
+    <div class="app-shell">
+      <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+          <div class="sidebar-logo">
+            <i class="fas fa-boxes"></i>
+          </div>
+          <div class="sidebar-title">
+            <span>Inventory</span>
+            <span>Control Suite</span>
+          </div>
+        </div>
+        <nav class="sidebar-nav">
+          <div class="nav-group">
+            <div class="nav-group-label">Main</div>
+            <ul class="nav-list">
+              <li class="nav-item">
+                <a href="index.html">
+                  <i class="fas fa-chart-line"></i>
+                  <span>Dashboard</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="products.html">
+                  <i class="fas fa-box-open"></i>
+                  <span>Products</span>
+                  <span class="badge" id="nav-low-stock-badge">0 low</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="categories.html">
+                  <i class="fas fa-folder-tree"></i>
+                  <span>Categories</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="suppliers.html">
+                  <i class="fas fa-truck-loading"></i>
+                  <span>Suppliers</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="transactions.html" class="active">
+                  <i class="fas fa-exchange-alt"></i>
+                  <span>Transactions</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="reports.html">
+                  <i class="fas fa-file-alt"></i>
+                  <span>Reports</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+        <div class="sidebar-footer">
+          <span>v1.0 • Relational</span>
+          <button id="sidebar-dark-toggle">
+            <i class="far fa-moon"></i>
+            <span>Dark</span>
+          </button>
+        </div>
+      </aside>
+
+      <div class="sidebar-backdrop" id="sidebar-backdrop"></div>
+
+      <div class="main-wrapper">
+        <header class="topbar">
+          <div class="topbar-left">
+            <button class="icon-button" id="sidebar-toggle" aria-label="Toggle navigation">
+              <i class="fas fa-bars"></i>
+            </button>
+            <div class="topbar-title" id="topbar-title-text">Transactions</div>
+          </div>
+          <div class="topbar-right">
+            <div class="topbar-search">
+              <i class="fas fa-search"></i>
+              <input
+                type="text"
+                id="global-search-input"
+                placeholder="Search products, suppliers..."
+              />
+            </div>
+            <button class="icon-button" id="topbar-theme-toggle" aria-label="Toggle dark mode">
+              <i class="far fa-moon"></i>
+            </button>
+            <div class="profile-dropdown">
+              <button class="profile-trigger" id="profile-trigger">
+                <span class="profile-avatar">IC</span>
+                <div class="profile-meta">
+                  <span>Inventory Admin</span>
+                  <span>admin@inventory.local</span>
+                </div>
+                <i class="fas fa-chevron-down chev-small"></i>
+              </button>
+              <div class="profile-menu" id="profile-menu">
+                <button type="button">
+                  <i class="fas fa-user-cog"></i>
+                  <span>Profile Settings</span>
+                </button>
+                <button type="button">
+                  <i class="fas fa-shield-alt"></i>
+                  <span>Access Control</span>
+                </button>
+                <button type="button">
+                  <i class="fas fa-sign-out-alt"></i>
+                  <span>Sign Out</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </header>
+
+        <main class="content">
+          <div class="page-header">
+            <div class="page-title-group">
+              <h1 class="page-title" id="page-title">Transactions</h1>
+              <p class="page-subtitle" id="page-subtitle">
+                Record stock movements and review transaction history.
+              </p>
+            </div>
+          </div>
+
+          <section id="transactions-content">
+            <div class="grid grid-cols-2 items-start">
+              <div class="card">
+                <div class="card-header">
+                  <div>
+                    <div class="card-title">Stock In / Out</div>
+                    <div class="card-subtitle">Capture a new inventory transaction.</div>
+                  </div>
+                </div>
+                <form id="transaction-form">
+                  <div class="form-row">
+                    <div class="form-control">
+                      <label for="tx-product-id">Product ID</label>
+                      <input id="tx-product-id" name="productId" required />
+                      <div class="form-error" data-error-for="productId"></div>
+                    </div>
+                    <div class="form-control">
+                      <label for="tx-type">Type</label>
+                      <select id="tx-type" name="type" required>
+                        <option value="IN">Stock In</option>
+                        <option value="OUT">Stock Out</option>
+                      </select>
+                      <div class="form-error" data-error-for="type"></div>
+                    </div>
+                  </div>
+                  <div class="form-row">
+                    <div class="form-control">
+                      <label for="tx-quantity">Quantity</label>
+                      <input id="tx-quantity" name="quantity" type="number" min="1" required />
+                      <div class="form-error" data-error-for="quantity"></div>
+                    </div>
+                    <div class="form-control">
+                      <label for="tx-ref">Reference / Document</label>
+                      <input id="tx-ref" name="reference" maxlength="80" />
+                      <div class="form-error" data-error-for="reference"></div>
+                    </div>
+                  </div>
+                  <div class="form-row">
+                    <div class="form-control">
+                      <label for="tx-performed-by">Performed By</label>
+                      <input id="tx-performed-by" name="performedBy" maxlength="80" />
+                      <div class="form-error" data-error-for="performedBy"></div>
+                    </div>
+                    <div class="form-control">
+                      <label for="tx-date">Date</label>
+                      <input id="tx-date" name="transactionDate" type="date" />
+                      <div class="form-error" data-error-for="transactionDate"></div>
+                    </div>
+                  </div>
+                  <div class="form-control">
+                    <label for="tx-notes">Notes</label>
+                    <textarea id="tx-notes" name="notes" rows="2" maxlength="300"></textarea>
+                    <div class="form-error" data-error-for="notes"></div>
+                  </div>
+                  <div class="form-actions">
+                    <button type="reset" class="btn btn-outline">
+                      <i class="fas fa-undo"></i>
+                      <span>Reset</span>
+                    </button>
+                    <button type="submit" class="btn btn-primary">
+                      <i class="fas fa-save"></i>
+                      <span>Record Transaction</span>
+                    </button>
+                  </div>
+                </form>
+              </div>
+
+              <div class="card">
+                <div class="card-header">
+                  <div>
+                    <div class="card-title">Transaction History</div>
+                    <div class="card-subtitle">Recently recorded movements.</div>
+                  </div>
+                </div>
+                <div class="table-wrapper">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Ref</th>
+                        <th>Product</th>
+                        <th>Type</th>
+                        <th>Qty</th>
+                        <th>By</th>
+                        <th>Date</th>
+                      </tr>
+                    </thead>
+                    <tbody id="tx-table-body">
+                      <!-- rows rendered by JS -->
+                    </tbody>
+                  </table>
+                </div>
+                <div id="tx-pagination"></div>
+              </div>
+            </div>
+          </section>
+        </main>
+      </div>
+    </div>
+
+    <div class="alert-container" id="alert-container"></div>
+    <div class="spinner-overlay" id="global-spinner">
+      <div class="spinner"></div>
+    </div>
+    <div class="modal-backdrop" id="global-modal-backdrop">
+      <div class="modal" id="global-modal">
+        <div class="modal-header">
+          <h2 class="modal-title" id="modal-title"></h2>
+          <button class="modal-close" id="modal-close-btn">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+        <div id="modal-body"></div>
+        <div class="modal-footer" id="modal-footer"></div>
+      </div>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script src="js/transactions.js"></script>
+  </body>
+</html>
+

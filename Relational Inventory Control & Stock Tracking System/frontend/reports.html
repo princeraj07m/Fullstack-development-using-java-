@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Reports | Relational Inventory Control</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/reports.css" />
+  </head>
+  <body data-page="reports">
+    <div class="app-shell">
+      <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+          <div class="sidebar-logo">
+            <i class="fas fa-boxes"></i>
+          </div>
+          <div class="sidebar-title">
+            <span>Inventory</span>
+            <span>Control Suite</span>
+          </div>
+        </div>
+        <nav class="sidebar-nav">
+          <div class="nav-group">
+            <div class="nav-group-label">Main</div>
+            <ul class="nav-list">
+              <li class="nav-item">
+                <a href="index.html">
+                  <i class="fas fa-chart-line"></i>
+                  <span>Dashboard</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="products.html">
+                  <i class="fas fa-box-open"></i>
+                  <span>Products</span>
+                  <span class="badge" id="nav-low-stock-badge">0 low</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="categories.html">
+                  <i class="fas fa-folder-tree"></i>
+                  <span>Categories</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="suppliers.html">
+                  <i class="fas fa-truck-loading"></i>
+                  <span>Suppliers</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="transactions.html">
+                  <i class="fas fa-exchange-alt"></i>
+                  <span>Transactions</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="reports.html" class="active">
+                  <i class="fas fa-file-alt"></i>
+                  <span>Reports</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+        <div class="sidebar-footer">
+          <span>v1.0 • Relational</span>
+          <button id="sidebar-dark-toggle">
+            <i class="far fa-moon"></i>
+            <span>Dark</span>
+          </button>
+        </div>
+      </aside>
+
+      <div class="sidebar-backdrop" id="sidebar-backdrop"></div>
+
+      <div class="main-wrapper">
+        <header class="topbar">
+          <div class="topbar-left">
+            <button class="icon-button" id="sidebar-toggle" aria-label="Toggle navigation">
+              <i class="fas fa-bars"></i>
+            </button>
+            <div class="topbar-title" id="topbar-title-text">Reports</div>
+          </div>
+          <div class="topbar-right">
+            <div class="topbar-search">
+              <i class="fas fa-search"></i>
+              <input
+                type="text"
+                id="global-search-input"
+                placeholder="Search products, suppliers..."
+              />
+            </div>
+            <button class="icon-button" id="topbar-theme-toggle" aria-label="Toggle dark mode">
+              <i class="far fa-moon"></i>
+            </button>
+            <div class="profile-dropdown">
+              <button class="profile-trigger" id="profile-trigger">
+                <span class="profile-avatar">IC</span>
+                <div class="profile-meta">
+                  <span>Inventory Admin</span>
+                  <span>admin@inventory.local</span>
+                </div>
+                <i class="fas fa-chevron-down chev-small"></i>
+              </button>
+              <div class="profile-menu" id="profile-menu">
+                <button type="button">
+                  <i class="fas fa-user-cog"></i>
+                  <span>Profile Settings</span>
+                </button>
+                <button type="button">
+                  <i class="fas fa-shield-alt"></i>
+                  <span>Access Control</span>
+                </button>
+                <button type="button">
+                  <i class="fas fa-sign-out-alt"></i>
+                  <span>Sign Out</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </header>
+
+        <main class="content">
+          <div class="page-header">
+            <div class="page-title-group">
+              <h1 class="page-title" id="page-title">Reports</h1>
+              <p class="page-subtitle" id="page-subtitle">
+                Slice inventory and movement data for export and analysis.
+              </p>
+            </div>
+            <div class="page-actions">
+              <button class="btn btn-primary" id="btn-export-csv">
+                <i class="fas fa-file-csv"></i>
+                <span>Export CSV</span>
+              </button>
+            </div>
+          </div>
+
+          <section id="reports-content">
+            <div class="card card-group">
+              <div class="card-header">
+                <div>
+                  <div class="card-title">Report Filters</div>
+                  <div class="card-subtitle">Choose a window and dataset to analyse.</div>
+                </div>
+              </div>
+              <form id="reports-filter-form">
+                <div class="form-row">
+                  <div class="form-control">
+                    <label for="report-from">From</label>
+                    <input id="report-from" name="from" type="date" required />
+                    <div class="form-error" data-error-for="from"></div>
+                  </div>
+                  <div class="form-control">
+                    <label for="report-to">To</label>
+                    <input id="report-to" name="to" type="date" required />
+                    <div class="form-error" data-error-for="to"></div>
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="form-control">
+                    <label for="report-type">Report Type</label>
+                    <select id="report-type" name="type">
+                      <option value="STOCK">Stock Snapshot</option>
+                      <option value="TRANSACTIONS">Transactions</option>
+                      <option value="LOW_STOCK">Low Stock</option>
+                    </select>
+                  </div>
+                  <div class="form-control">
+                    <label>&nbsp;</label>
+                    <div class="action-group">
+                      <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-filter"></i>
+                        <span>Apply</span>
+                      </button>
+                      <button type="reset" class="btn btn-outline">
+                        <i class="fas fa-undo"></i>
+                        <span>Reset</span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <div class="card-title">Report Preview</div>
+                  <div class="card-subtitle">Subset of rows that will be exported.</div>
+                </div>
+              </div>
+              <div class="table-wrapper">
+                <table>
+                  <thead id="reports-table-head">
+                    <tr>
+                      <th>Column</th>
+                      <th>Value</th>
+                    </tr>
+                  </thead>
+                  <tbody id="reports-table-body">
+                    <tr>
+                      <td colspan="6" class="text-muted">
+                        Use the filters above to load a report.
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </section>
+        </main>
+      </div>
+    </div>
+
+    <div class="alert-container" id="alert-container"></div>
+    <div class="spinner-overlay" id="global-spinner">
+      <div class="spinner"></div>
+    </div>
+    <div class="modal-backdrop" id="global-modal-backdrop">
+      <div class="modal" id="global-modal">
+        <div class="modal-header">
+          <h2 class="modal-title" id="modal-title"></h2>
+          <button class="modal-close" id="modal-close-btn">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+        <div id="modal-body"></div>
+        <div class="modal-footer" id="modal-footer"></div>
+      </div>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script src="js/reports.js"></script>
+  </body>
+</html>
+
