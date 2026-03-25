@@ -1,0 +1,199 @@
+-- Drop and recreate database
+DROP DATABASE IF EXISTS inventory_pro;
+CREATE DATABASE inventory_pro CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+USE inventory_pro;
+
+-- Core lookup tables
+
+CREATE TABLE categories (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  code VARCHAR(20) NOT NULL UNIQUE,
+  name VARCHAR(100) NOT NULL,
+  description VARCHAR(255),
+  subcategories VARCHAR(255),
+  status ENUM('active', 'inactive') NOT NULL DEFAULT 'active',
+  last_modified DATE NOT NULL
+) ENGINE=InnoDB;
+
+CREATE TABLE suppliers (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  code VARCHAR(30) NOT NULL UNIQUE,
+  name VARCHAR(150) NOT NULL,
+  contact_name VARCHAR(100),
+  email VARCHAR(150),
+  phone VARCHAR(50),
+  location VARCHAR(150),
+  lead_time_days INT,
+  on_time_rate TINYINT,
+  rating TINYINT,
+  status ENUM('active', 'on-hold', 'inactive') NOT NULL DEFAULT 'active',
+  payment_terms VARCHAR(50),
+  last_order_date DATE,
+  total_spend DECIMAL(15,2) NOT NULL DEFAULT 0.00
+) ENGINE=InnoDB;
+
+CREATE TABLE customers (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  code VARCHAR(30) NOT NULL UNIQUE,
+  name VARCHAR(150) NOT NULL,
+  type ENUM('B2B', 'B2C') NOT NULL DEFAULT 'B2B',
+  contact_name VARCHAR(100),
+  email VARCHAR(150),
+  phone VARCHAR(50),
+  location VARCHAR(150),
+  total_orders INT NOT NULL DEFAULT 0,
+  total_revenue DECIMAL(15,2) NOT NULL DEFAULT 0.00,
+  last_order_date DATE,
+  status ENUM('active', 'on-hold', 'inactive') NOT NULL DEFAULT 'active',
+  credit_limit DECIMAL(15,2) NOT NULL DEFAULT 0.00,
+  balance DECIMAL(15,2) NOT NULL DEFAULT 0.00
+) ENGINE=InnoDB;
+
+-- Products and stock
+
+CREATE TABLE products (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  product_code VARCHAR(30) NOT NULL UNIQUE,
+  sku VARCHAR(30) NOT NULL UNIQUE,
+  name VARCHAR(150) NOT NULL,
+  category_id INT NOT NULL,
+  supplier_id INT NULL,
+  quantity INT NOT NULL DEFAULT 0,
+  reorder_point INT NOT NULL DEFAULT 0,
+  unit_price DECIMAL(10,2) NOT NULL DEFAULT 0.00,
+  location VARCHAR(50),
+  status ENUM('optimal', 'low', 'critical') NOT NULL DEFAULT 'optimal',
+  last_restocked DATE,
+  CONSTRAINT fk_products_category
+    FOREIGN KEY (category_id) REFERENCES categories(id),
+  CONSTRAINT fk_products_supplier
+    FOREIGN KEY (supplier_id) REFERENCES suppliers(id)
+) ENGINE=InnoDB;
+
+-- Inventory movements (transactions)
+
+CREATE TABLE inventory_transactions (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  transaction_code VARCHAR(30) NOT NULL UNIQUE,
+  occurred_at DATETIME NOT NULL,
+  reference VARCHAR(30) NOT NULL,
+  type ENUM('in', 'out', 'adjustment') NOT NULL,
+  product_id INT NOT NULL,
+  customer_id INT NULL,
+  supplier_id INT NULL,
+  quantity INT NOT NULL,
+  unit_price DECIMAL(10,2) NOT NULL,
+  total_value DECIMAL(15,2) NOT NULL,
+  user_name VARCHAR(100),
+  notes VARCHAR(255),
+  CONSTRAINT fk_transactions_product
+    FOREIGN KEY (product_id) REFERENCES products(id),
+  CONSTRAINT fk_transactions_customer
+    FOREIGN KEY (customer_id) REFERENCES customers(id),
+  CONSTRAINT fk_transactions_supplier
+    FOREIGN KEY (supplier_id) REFERENCES suppliers(id)
+) ENGINE=InnoDB;
+
+-- Alerts for dashboard / alerts page
+
+CREATE TABLE inventory_alerts (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  alert_code VARCHAR(30) NOT NULL UNIQUE,
+  type ENUM('critical', 'warning', 'info') NOT NULL,
+  product_id INT NOT NULL,
+  current_stock INT NOT NULL,
+  threshold INT NOT NULL,
+  message VARCHAR(255) NOT NULL,
+  alert_at DATETIME NOT NULL,
+  status ENUM('active', 'acknowledged', 'resolved') NOT NULL DEFAULT 'active',
+  CONSTRAINT fk_alerts_product
+    FOREIGN KEY (product_id) REFERENCES products(id)
+) ENGINE=InnoDB;
+
+-- Seed data matching UI demo content
+
+INSERT INTO categories (code, name, description, subcategories, status, last_modified) VALUES
+  ('CAT-001', 'Electronics', 'Electronic components and devices', 'Capacitors,Resistors,Semiconductors', 'active', '2025-02-20'),
+  ('CAT-002', 'Hardware', 'Bolts, nuts, screws and fasteners', 'Bolts,Nuts,Screws,Washers', 'active', '2025-02-18'),
+  ('CAT-003', 'Tools', 'Hand tools and power tools', 'Hand Tools,Power Tools,Measuring Tools', 'active', '2025-02-22'),
+  ('CAT-004', 'Materials', 'Raw materials and sheets', 'Aluminum,Steel,Copper,Plastic', 'active', '2025-02-19'),
+  ('CAT-005', 'Parts', 'Replacement and spare parts', 'Bearings,Gaskets,Seals,Bushings', 'active', '2025-02-21'),
+  ('CAT-006', 'Safety Equipment', 'Protective gear and safety equipment', 'Gloves,Helmets,Goggles,Masks', 'active', '2025-02-15');
+
+INSERT INTO suppliers (code, name, contact_name, email, phone, location, lead_time_days, on_time_rate, rating, status, payment_terms, last_order_date, total_spend) VALUES
+  ('SUP-IND-01', 'Industrial Components Co.', 'Laura Bennett', 'laura.bennett@indcomponents.co', '+1 (555) 210-8842', 'Chicago, IL, USA', 7, 98, 5, 'active', 'Net 30', '2025-02-20', 184500.00),
+  ('SUP-MET-02', 'Metallix Steel & Fasteners', 'James Carter', 'j.carter@metallix.com', '+1 (555) 332-1189', 'Detroit, MI, USA', 10, 92, 4, 'active', 'Net 45', '2025-02-18', 132900.00),
+  ('SUP-RUB-03', 'RubberTech Industries', 'Anita Sharma', 'anita.sharma@rubbertech.in', '+91 22 5558 4421', 'Mumbai, India', 18, 88, 4, 'active', 'Prepaid', '2025-02-15', 95750.00),
+  ('SUP-ALU-04', 'AluCore Metals', 'Daniel Kim', 'daniel.kim@alucore.com', '+1 (555) 774-9920', 'Seattle, WA, USA', 21, 76, 3, 'on-hold', 'Net 30', '2025-02-10', 68420.00);
+
+INSERT INTO customers (code, name, type, contact_name, email, phone, location, total_orders, total_revenue, last_order_date, status, credit_limit, balance) VALUES
+  ('CUST-MFG-01', 'Alpha Manufacturing Ltd.', 'B2B', 'Michael Green', 'm.green@alphamfg.com', '+1 (555) 110-2244', 'Dallas, TX, USA', 128, 984500.00, '2025-02-25', 'active', 250000.00, 68420.00),
+  ('CUST-ENG-02', 'Precision Engineering Group', 'B2B', 'Emma Wilson', 'emma.wilson@peg-group.com', '+1 (555) 998-7711', 'Cleveland, OH, USA', 64, 452300.00, '2025-02-22', 'active', 150000.00, 32400.00),
+  ('CUST-DIST-03', 'Northline Distributors', 'B2B', 'Carlos Martinez', 'c.martinez@northline.co', '+1 (555) 443-8890', 'Toronto, Canada', 92, 615200.00, '2025-02-20', 'on-hold', 180000.00, 172000.00),
+  ('CUST-SM-04', 'Local Service & Repair', 'B2B', 'John Lee', 'john.lee@localservice.io', '+1 (555) 667-0033', 'Portland, OR, USA', 34, 84200.00, '2025-02-18', 'inactive', 50000.00, 0.00);
+
+-- Products (5 SKUs used across UI)
+
+INSERT INTO products (product_code, sku, name, category_id, supplier_id, quantity, reorder_point, unit_price, location, status, last_restocked) VALUES
+  ('PRD-001', 'SKU-001', 'Industrial Bearing', (SELECT id FROM categories WHERE name = 'Hardware'), (SELECT id FROM suppliers WHERE code = 'SUP-IND-01'), 450, 100, 45.99, 'Bin A-12', 'optimal', '2025-02-20'),
+  ('PRD-002', 'SKU-002', 'Steel Fastener', (SELECT id FROM categories WHERE name = 'Hardware'), (SELECT id FROM suppliers WHERE code = 'SUP-MET-02'), 89, 150, 2.45, 'Bin B-05', 'low', '2025-02-15'),
+  ('PRD-003', 'SKU-003', 'Rubber Gasket', (SELECT id FROM categories WHERE name = 'Parts'), (SELECT id FROM suppliers WHERE code = 'SUP-RUB-03'), 234, 75, 12.50, 'Bin C-08', 'optimal', '2025-02-18'),
+  ('PRD-004', 'SKU-004', 'Aluminum Rod', (SELECT id FROM categories WHERE name = 'Materials'), (SELECT id FROM suppliers WHERE code = 'SUP-ALU-04'), 12, 50, 89.99, 'Bin D-02', 'critical', '2025-02-10'),
+  ('PRD-005', 'SKU-005', 'Copper Wire', (SELECT id FROM categories WHERE name = 'Electronics'), (SELECT id FROM suppliers WHERE code = 'SUP-IND-01'), 567, 200, 34.50, 'Bin E-15', 'optimal', '2025-02-22');
+
+-- Inventory transactions (matches Transactions page)
+
+INSERT INTO inventory_transactions (transaction_code, occurred_at, reference, type, product_id, customer_id, supplier_id, quantity, unit_price, total_value, user_name, notes) VALUES
+  ('TXN-001', '2025-02-25 14:32:15', 'PO-4521', 'in',
+    (SELECT id FROM products WHERE sku = 'SKU-001'),
+    NULL,
+    (SELECT id FROM suppliers WHERE code = 'SUP-IND-01'),
+    120, 45.99, 5518.80, 'John Smith', 'Received from supplier'),
+  ('TXN-002', '2025-02-25 12:15:42', 'SO-1289', 'out',
+    (SELECT id FROM products WHERE sku = 'SKU-002'),
+    (SELECT id FROM customers WHERE code = 'CUST-MFG-01'),
+    NULL,
+    45, 2.45, 110.25, 'Sarah Johnson', 'Shipped to customer'),
+  ('TXN-003', '2025-02-25 10:48:20', 'PO-4520', 'in',
+    (SELECT id FROM products WHERE sku = 'SKU-003'),
+    NULL,
+    (SELECT id FROM suppliers WHERE code = 'SUP-RUB-03'),
+    300, 12.50, 3750.00, 'Mike Davis', 'Bulk purchase order'),
+  ('TXN-004', '2025-02-24 16:22:55', 'SO-1288', 'out',
+    (SELECT id FROM products WHERE sku = 'SKU-004'),
+    (SELECT id FROM customers WHERE code = 'CUST-ENG-02'),
+    NULL,
+    78, 89.99, 7019.22, 'Emily Wilson', 'Production run shipment'),
+  ('TXN-005', '2025-02-24 13:55:30', 'ADJ-512', 'adjustment',
+    (SELECT id FROM products WHERE sku = 'SKU-005'),
+    NULL,
+    NULL,
+    25, 34.50, 862.50, 'Robert Brown', 'Inventory correction - physical count'),
+  ('TXN-006', '2025-02-24 09:10:12', 'SO-1287', 'out',
+    (SELECT id FROM products WHERE sku = 'SKU-001'),
+    (SELECT id FROM customers WHERE code = 'CUST-DIST-03'),
+    NULL,
+    60, 45.99, 2759.40, 'Sarah Johnson', 'Customer order fulfillment');
+
+-- Alerts (matches Alerts page)
+
+INSERT INTO inventory_alerts (alert_code, type, product_id, current_stock, threshold, message, alert_at, status) VALUES
+  ('ALR-001', 'critical',
+    (SELECT id FROM products WHERE sku = 'SKU-004'),
+    12, 50, 'Stock level critically low - immediate reorder required', '2025-02-25 14:15:00', 'active'),
+  ('ALR-002', 'warning',
+    (SELECT id FROM products WHERE sku = 'SKU-002'),
+    89, 150, 'Stock below reorder point - consider placing order', '2025-02-25 12:42:00', 'active'),
+  ('ALR-003', 'warning',
+    (SELECT id FROM products WHERE name = 'Rubber Gasket'),
+    145, 200, 'Inventory approaching reorder level', '2025-02-24 18:30:00', 'active'),
+  ('ALR-004', 'info',
+    (SELECT id FROM products WHERE sku = 'SKU-001'),
+    450, 100, 'Reorder completed - stock replenished', '2025-02-24 14:22:00', 'resolved'),
+  ('ALR-005', 'warning',
+    (SELECT id FROM products WHERE name = 'Rubber Gasket'),
+    234, 75, 'Unusual stock movement detected - verify count', '2025-02-23 16:55:00', 'acknowledged'),
+  ('ALR-006', 'critical',
+    (SELECT id FROM products WHERE name = 'Industrial Bearing'),
+    3, 25, 'CRITICAL: Stock at minimum - order immediately', '2025-02-23 09:18:00', 'active');
+

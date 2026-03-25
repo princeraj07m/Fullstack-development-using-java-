@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Inventory Pro - Stock Management</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <div class="app">
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-inner">
+        <div class="sidebar-header">
+          <div class="sidebar-brand">
+            <h1 class="brand-title">INVENTORY PRO</h1>
+            <p class="brand-version">v1.0.0 SYSTEM</p>
+          </div>
+          <button type="button" class="sidebar-toggle" id="sidebarToggle" aria-label="Toggle sidebar">
+            <svg class="chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+          </button>
+        </div>
+
+        <nav class="sidebar-nav">
+          <button type="button" class="nav-item active" data-section="dashboard">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="M18 9V3"/><path d="M12 15V3"/><path d="M6 21V3"/></svg>
+            <span>DASHBOARD</span>
+          </button>
+          <button type="button" class="nav-item" data-section="products">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><path d="M3.27 6.96L12 12.01l8.73-5.05"/><path d="M12 22.08V12"/></svg>
+            <span>PRODUCTS</span>
+          </button>
+          <button type="button" class="nav-item" data-section="suppliers">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 20h20"/><path d="M5 20V9l7-4 7 4v11"/><path d="M9 20V9h6v11"/></svg>
+            <span>SUPPLIERS</span>
+          </button>
+          <button type="button" class="nav-item" data-section="customers">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            <span>CUSTOMERS</span>
+          </button>
+          <button type="button" class="nav-item" data-section="transactions">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+            <span>TRANSACTIONS</span>
+          </button>
+          <button type="button" class="nav-item" data-section="categories">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+            <span>CATEGORIES</span>
+          </button>
+          <button type="button" class="nav-item" data-section="alerts">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>
+            <span>ALERTS</span>
+          </button>
+        </nav>
+
+        <div class="sidebar-status">
+          <div class="status-row">
+            <span class="status-dot"></span>
+            <span class="status-text">SYSTEM ONLINE</span>
+          </div>
+          <div class="status-details">
+            <div>ITEMS: <span id="statusSkus">-</span> SKUs</div>
+            <div>CATEGORIES: <span id="statusCats">-</span></div>
+            <div>LOW STOCK: <span id="statusAlerts">-</span> ALERTS</div>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Mobile overlay -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- Main -->
+    <main class="main">
+      <header class="toolbar">
+        <div class="toolbar-left">
+          <span class="toolbar-path">INVENTORY SYSTEM / <span class="toolbar-section" id="toolbarSection">DASHBOARD</span></span>
+        </div>
+        <div class="toolbar-right">
+          <span class="toolbar-user" id="toolbarUser"></span>
+          <span class="toolbar-date">LAST UPDATE: <span id="lastUpdate">--</span></span>
+          <button type="button" class="toolbar-btn" aria-label="Notifications">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+          </button>
+          <button type="button" class="toolbar-btn" id="refreshBtn" aria-label="Refresh">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 4v6h-6"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+          </button>
+          <button type="button" class="toolbar-btn" id="loginBtn" aria-label="Login">
+            LOGIN
+          </button>
+        </div>
+      </header>
+
+      <div class="content" id="content">
+        <!-- Pages rendered by JS -->
+      </div>
+    </main>
+  </div>
+
+  <!-- Modals container -->
+  <div id="modals"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
