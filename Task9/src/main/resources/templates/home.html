@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Employee Search</title>
+</head>
+<body>
+
+<h2>Employee Management (Spring MVC)</h2>
+
+<form action="/employee" method="get">
+    <input type="number" name="id" required>
+    <button type="submit">Search</button>
+</form>
+
+<p>Try ids: 101, 102,103</p>
+
+<p style="color:red" th:text="${error}"></p>
+
+</body>
+</html>
